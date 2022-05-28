@@ -2,17 +2,14 @@ import React from 'react';
 import {Profile} from "./Profile/Profile";
 import {Test} from "./Test/Test";
 import {Route, Routes} from "react-router-dom";
-import {Login} from "../Login/Login";
-import {ForgotPass} from "../ForgotPass/ForgotPass";
-import {EnterNewPass} from "../EnterNewPass/EnterNewPass";
-import Error404 from "../../common/404/Error404";
-import { Nav } from './Nav/Nav';
+import {Login} from "../../features/Login/Login";
+import {ForgotPass} from "../../features/ForgotPass/ForgotPass";
+import {EnterNewPass} from "../../features/ForgotPass/EnterNewPass/EnterNewPass";
+import Error404 from "../../../common/404/Error404";
 
 export function Main() {
     return (
         <div>
-            <Nav />
-
             <Routes>
                 <Route
                     path="/"
@@ -35,7 +32,6 @@ export function Main() {
                     element={<Error404/>}
                 />
             </Routes>
-
 
             <Test/>
         </div>
