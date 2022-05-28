@@ -3,7 +3,7 @@ import React from 'react';
 export function ForgotPass() {
     return (
         <div>
-            ForgotPass
+            ForgotPass123123
         </div>
  )
 }
