@@ -2,14 +2,16 @@ import {applyMiddleware, combineReducers, Store, legacy_createStore as createSto
 import thunk, { ThunkDispatch } from "redux-thunk";
 import testReducer from "./reducers/test-reducer";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import profileReducer, {ProfileActionsType} from "./reducers/profile-reducer";
 
-export type ActionsType = any
+export type ActionsType = ProfileActionsType
 export type ReduxStateType = ReturnType<typeof rootReducer>
 export type TypedDispatch = ThunkDispatch<ReduxStateType, any, ActionsType>
 
 
 let rootReducer = combineReducers({
-    test: testReducer
+    test: testReducer,
+    profile: profileReducer
 })
 
 export const store: Store<ReduxStateType, ActionsType> = createStore(rootReducer, applyMiddleware(thunk))
