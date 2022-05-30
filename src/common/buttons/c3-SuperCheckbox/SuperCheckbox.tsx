@@ -29,7 +29,7 @@ const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
             <input
                 type={'checkbox'}
                 onChange={onChangeCallback}
-
+                className={className}
                 {...restProps} // отдаём инпуту остальные пропсы если они есть (checked например там внутри)
             />
         </label> // благодаря label нажатие на спан передастся в инпут
