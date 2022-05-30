@@ -1,20 +1,23 @@
 import React, {memo} from 'react';
 import style from "./UserProfile.module.css";
 import SuperButton from "../../../../../common/buttons/c2-SuperButton/SuperButton";
+import noAvatar from '../../../../../common/img/no-avatar.png'
 
 type UserProfilePropsType = {
+    name: string
+    avatar: string | undefined
     clickToEditProfile: (editProfile: boolean) => void
 }
 
-export const UserProfile = memo(({clickToEditProfile}: UserProfilePropsType) => {
+export const UserProfile = memo(({name, avatar, clickToEditProfile}: UserProfilePropsType) => {
     return (
         <div className={style.userProfile}>
             <img
-                src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile.png"
+                src={avatar === undefined || avatar === 'email' ? noAvatar: avatar}
                 alt="avatar"
             />
             <div className={style.userProfile__name}>
-                name name
+                {name}
             </div>
             <div className={style.userProfile__jobName}>
                 Front-end developer

@@ -1,71 +1,109 @@
 import React, {memo} from 'react';
 import style from './EditProfile.module.css'
 import SuperButton from "../../../../../../common/buttons/c2-SuperButton/SuperButton";
-import SuperInputText from "../../../../../../common/buttons/c1-SuperInputText/SuperInputText";
 import newPhoto from '../../../../../../common/img/add-photo.png'
+import {useAppDispatch} from "../../../../../../store/store";
+import {editProfileThunk} from "../../../../../../store/reducers/profile-reducer";
+import noAvatar from '../../../../../../common/img/no-avatar.png'
+import {ErrorMessage, Field, Form, Formik} from 'formik';
+import * as Yup from 'yup';
 
 type EditProfilePropsType = {
     profileData: {
         name: string
         email: string
-        photo: string
+        avatar: string | undefined
         editProfile: boolean
     },
     clickToEditProfile: (editProfile: boolean) => void
 }
 
-export const EditProfile = memo(({clickToEditProfile}: EditProfilePropsType) => {
+type FormikValues = {
+    name: string
+    avatar: string | undefined | null
+}
+
+export const EditProfile = memo(({profileData, clickToEditProfile}: EditProfilePropsType) => {
+
+    const dispatch = useAppDispatch()
 
     const cancelToEditProfile = () => {
         clickToEditProfile(false)
     }
 
-    const saveNewDataProfile = () => {
+    const initialValues: FormikValues = {
+        name: profileData.name,
+        avatar: profileData.avatar
+    }
+
+    const validate = Yup.object({
+        name: Yup.string().max(15, 'Max length is 15').required('Required'),
+    })
+
+    const onSubmit = (values: any) => {
+        console.log(values)
+        let {name} = values
+        dispatch(editProfileThunk(name))
         clickToEditProfile(false)
     }
+
 
     return (
         <div className={style.editProfile__container}>
             <div className={style.editProfile__edit_body}>
-                <h2>Personal Information</h2>
-                <img
-                    className={style.editProfile__img_avatar}
-                    src='https://www.pngall.com/wp-content/uploads/12/Avatar-Profile.png'
-                    alt="avatar"
-                />
-                <img
-                    className={style.editProfile__img_add_new_photo}
-                    src={newPhoto}
-                    alt='new'
-                />
-                <div className={style.editProfile__edit}>
-                    <label>Nickname</label>
-                    <SuperInputText
-                        className={style.editProfile__edit_input}
-                        // value={name}
-                    />
-                </div>
-                <div className={style.editProfile__edit}>
-                    <label>Email</label>
-                    <SuperInputText
-                        className={style.editProfile__edit_input}
-                        // value={email}
-                    />
-                </div>
-                <div className={style.editProfile__edit_buttons}>
-                    <SuperButton
-                        onClick={cancelToEditProfile}
-                        className={style.editProfile__edit_buttonCancel}
-                    >
-                        Cancel
-                    </SuperButton>
-                    <SuperButton
-                        onClick={saveNewDataProfile}
-                        className={style.editProfile__edit_buttonSave}
-                    >
-                        Save
-                    </SuperButton>
-                </div>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validate}
+                    onSubmit={onSubmit}
+                >
+                    <Form className={style.editProfile__edit}>
+                        <h2>Personal Information</h2>
+                        <img
+                            className={style.editProfile__img_avatar}
+                            src={profileData.avatar === undefined || profileData.avatar === 'email' ? noAvatar: profileData.avatar}
+                            alt="avatar"
+                        />
+                        <img
+                            className={style.editProfile__img_add_new_photo}
+                            src={newPhoto}
+                            alt='new'
+                        />
+                        <div className={style.editProfile__edit}>
+                            <label>Nickname</label>
+                            <Field
+                                className={style.editProfile__edit_input}
+                                name='name'
+                                placeholder='Enter your name'
+                            />
+                            <ErrorMessage name="name" component="div" className={style.editProfile__edit_error}/>
+                        </div>
+                        <div className={style.editProfile__edit}>
+                            <label>Email</label>
+                            <Field
+                                className={style.editProfile__edit_input}
+                                name='email'
+                                placeholder='Enter your email'
+                                value={profileData.email}
+                            />
+                            <ErrorMessage name="email" component="div" className={style.editProfile__edit_error}/>
+                        </div>
+                        <div className={style.editProfile__edit_buttons}>
+                            <SuperButton
+                                className={style.editProfile__edit_buttonCancel}
+                                type="reset"
+                                onClick={cancelToEditProfile}
+                            >
+                                Cancel
+                            </SuperButton>
+                            <SuperButton
+                                className={style.editProfile__edit_buttonSave}
+                                type='submit'
+                            >
+                                Save
+                            </SuperButton>
+                        </div>
+                    </Form>
+                </Formik>
             </div>
         </div>
     )

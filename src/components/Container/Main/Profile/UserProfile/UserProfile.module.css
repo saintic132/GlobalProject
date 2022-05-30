@@ -41,6 +41,10 @@
     color: #21268F;
 }
 
+.userProfile__button_editProfile:hover {
+    cursor: pointer;
+}
+
 .userProfile__button_editProfile:active {
     box-shadow: 0 1px #666;
     transform: translateY(1px);

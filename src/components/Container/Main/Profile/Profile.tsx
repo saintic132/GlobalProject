@@ -31,6 +31,8 @@ export const Profile = () => {
 
                     {/*Компонента с отрисовкой User*/}
                     <UserProfile
+                        name={profileData.name}
+                        avatar={profileData.avatar}
                         clickToEditProfile={clickToEditProfile}
                     />
 
