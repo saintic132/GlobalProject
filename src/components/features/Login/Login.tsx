@@ -7,16 +7,16 @@ import {ForgotPass} from "../ForgotPass/ForgotPass";
 
 export const Login = () => {
     return (
-        <div>
-            <h1>It-incubator</h1>
-            <h2>Sign In</h2>
+        <div className={style.loginContainer}>
+            <h1 className={style.title}>It-incubator</h1>
+            <h2 className={style.subtitle}>Sign In</h2>
             <form className={style.form}>
-                <SuperInputText />
-                <SuperInputText />
+                <SuperInputText className={style.input} />
+                <SuperInputText className={style.input} />
                 <SuperCheckbox />
                 <ForgotPass />
-                <SuperButton />
             </form>
+            <SuperButton className={style.btn}/>
             <div><a href={'#'}>Don’t have an account?</a></div>
             <div><a href={'#'}>Sign Up</a></div>
         </div>
