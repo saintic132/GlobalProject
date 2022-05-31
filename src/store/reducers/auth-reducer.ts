@@ -23,6 +23,16 @@ export type ActionsType = ReturnType<typeof setLoggedInAC>
 // actions
 const setLoggedInAC = (isLoggedIn:boolean) => ({type: 'login/SET-IS-LOGGED-IN', isLoggedIn} as const)
 
+// thunks
+const LogginTC = (data: LoginType) => {
+    return (dispatch: Dispatch<ActionsType>) => {
+        authAPI.login(data)
+            .then((res) => {
+                dispatch(setLoggedInAC(true))
+            })
+    }
+}
+
 // api
 export const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
