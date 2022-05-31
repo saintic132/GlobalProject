@@ -104,7 +104,7 @@
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
 }
 
-.editProfile__edit_buttonCancel:hover, .editProfile__edit_buttonSave:hover  {
+.editProfile__edit_buttonCancel:hover, .editProfile__edit_buttonSave:hover {
     cursor: pointer;
 }
 
@@ -113,8 +113,28 @@
     transform: translateY(1px);
 }
 
+button:disabled,
+button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #6666
+}
+
 /*Error field show*/
 
 .editProfile__edit_error {
     color: red;
+}
+
+.editProfile__edit_server_error {
+    max-width: 250px;
+    width: 100%;
+    color: red;
+    position: relative;
+    top: 50px;
+    left: 75px;
+}
+
+.fakeDiv {
+    height: 21px;
 }

@@ -16,7 +16,6 @@ export const Profile = () => {
         dispatch(setEditProfileAC(editMode))
     }
 
-
     if (profileData.editProfile) {
         return <EditProfile
             profileData={profileData}

@@ -1,9 +1,9 @@
-import React, {memo} from 'react';
+import React, {memo, useEffect} from 'react';
 import style from './EditProfile.module.css'
 import SuperButton from "../../../../../../common/buttons/c2-SuperButton/SuperButton";
 import newPhoto from '../../../../../../common/img/add-photo.png'
 import {useAppDispatch} from "../../../../../../store/store";
-import {editProfileThunk} from "../../../../../../store/reducers/profile-reducer";
+import {editProfileThunk, setErrorToProfileAC} from "../../../../../../store/reducers/profile-reducer";
 import noAvatar from '../../../../../../common/img/no-avatar.png'
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import * as Yup from 'yup';
@@ -14,6 +14,8 @@ type EditProfilePropsType = {
         email: string
         avatar: string | undefined
         editProfile: boolean
+        disableButton: boolean
+        errorMessage: string | null
     },
     clickToEditProfile: (editProfile: boolean) => void
 }
@@ -35,18 +37,21 @@ export const EditProfile = memo(({profileData, clickToEditProfile}: EditProfileP
         name: profileData.name,
         avatar: profileData.avatar
     }
-
     const validate = Yup.object({
         name: Yup.string().max(15, 'Max length is 15').required('Required'),
     })
-
     const onSubmit = (values: any) => {
-        console.log(values)
         let {name} = values
-        dispatch(editProfileThunk(name))
-        clickToEditProfile(false)
+        if (name === profileData.name) {
+            clickToEditProfile(false)
+        } else {
+            dispatch(editProfileThunk(name))
+        }
     }
 
+    useEffect(() => {
+        dispatch(setErrorToProfileAC(null))
+    }, [dispatch])
 
     return (
         <div className={style.editProfile__container}>
@@ -87,6 +92,17 @@ export const EditProfile = memo(({profileData, clickToEditProfile}: EditProfileP
                             />
                             <ErrorMessage name="email" component="div" className={style.editProfile__edit_error}/>
                         </div>
+                        { !profileData.errorMessage &&
+                            <div className={style.fakeDiv}>
+
+                            </div>
+                        }
+                        {
+                            profileData.errorMessage &&
+                                <div className={style.editProfile__edit_server_error}>
+                                    {profileData.errorMessage}
+                                </div>
+                        }
                         <div className={style.editProfile__edit_buttons}>
                             <SuperButton
                                 className={style.editProfile__edit_buttonCancel}
@@ -98,6 +114,7 @@ export const EditProfile = memo(({profileData, clickToEditProfile}: EditProfileP
                             <SuperButton
                                 className={style.editProfile__edit_buttonSave}
                                 type='submit'
+                                disabled={profileData.disableButton}
                             >
                                 Save
                             </SuperButton>
