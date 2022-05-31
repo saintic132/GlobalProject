@@ -1,5 +1,3 @@
-import {ActionsType} from "../store";
-
 const initialState = {
     isLoggedIn: false
 }
@@ -16,3 +14,7 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
 type InitialStateType = {
     isLoggedIn: boolean
 }
+export type ActionsType = ReturnType<typeof setLoggedInAC>
+
+// actions
+const setLoggedInAC = (isLoggedIn:boolean) => ({type: 'login/SET-IS-LOGGED-IN', isLoggedIn} as const)
