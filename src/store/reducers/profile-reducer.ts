@@ -17,8 +17,8 @@ type InitialProfileStateType = {
     errorMessage: null | string
 }
 let initialProfileState: InitialProfileStateType = {
-    name: 'he',
-    email: "hello@aga.ru",
+    name: '123@gaga.ru',
+    email: "123@gaga.ru",
     avatar: undefined,
     editProfile: false,
     disableButton: false,

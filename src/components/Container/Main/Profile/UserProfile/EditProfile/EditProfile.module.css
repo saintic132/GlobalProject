@@ -135,6 +135,10 @@ button[disabled] {
     left: 75px;
 }
 
+.fakeDivAvatarUrl {
+    height: 35px;
+}
+
 .fakeDiv {
     height: 21px;
 }
