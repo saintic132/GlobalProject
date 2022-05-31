@@ -81,7 +81,11 @@ type SetEditProfileType = ReturnType<typeof setEditProfileAC>
 type SetDisableButtonSaveButtonEditProfileType = ReturnType<typeof setDisableButtonSaveButtonEditProfileAC>
 type SetErrorToProfileType = ReturnType<typeof setErrorToProfileAC>
 
-export type ProfileActionsType = EditProfileType | SetEditProfileType | SetDisableButtonSaveButtonEditProfileType | SetErrorToProfileType
+export type ProfileActionsType =
+    EditProfileType
+    | SetEditProfileType
+    | SetDisableButtonSaveButtonEditProfileType
+    | SetErrorToProfileType
 
 
 //Thunk
@@ -96,7 +100,11 @@ export const editProfileThunk = (name: string, avatar?: string) => (dispatch: Ty
             }
         })
         .catch(err => {
-            dispatch(setErrorToProfileAC(err.response.data.error))
+            if (err.response.data) {
+                dispatch(setErrorToProfileAC(err.response.data.error))
+            } else {
+                dispatch(setErrorToProfileAC(err.message))
+            }
         })
         .finally(() => {
             dispatch(setDisableButtonSaveButtonEditProfileAC(false))

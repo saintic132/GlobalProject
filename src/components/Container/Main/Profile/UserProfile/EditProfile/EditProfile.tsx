@@ -65,7 +65,7 @@ export const EditProfile = memo(({profileData, clickToEditProfile}: EditProfileP
                         <h2>Personal Information</h2>
                         <img
                             className={style.editProfile__img_avatar}
-                            src={profileData.avatar === undefined || profileData.avatar === 'email' ? noAvatar: profileData.avatar}
+                            src={profileData.avatar === undefined || profileData.avatar === 'email' ? noAvatar : profileData.avatar}
                             alt="avatar"
                         />
                         <img
@@ -92,16 +92,16 @@ export const EditProfile = memo(({profileData, clickToEditProfile}: EditProfileP
                             />
                             <ErrorMessage name="email" component="div" className={style.editProfile__edit_error}/>
                         </div>
-                        { !profileData.errorMessage &&
-                            <div className={style.fakeDiv}>
+                        {!profileData.errorMessage &&
+                        <div className={style.fakeDiv}>
 
-                            </div>
+                        </div>
                         }
                         {
                             profileData.errorMessage &&
-                                <div className={style.editProfile__edit_server_error}>
-                                    {profileData.errorMessage}
-                                </div>
+                            <div className={style.editProfile__edit_server_error}>
+                                {profileData.errorMessage}
+                            </div>
                         }
                         <div className={style.editProfile__edit_buttons}>
                             <SuperButton
