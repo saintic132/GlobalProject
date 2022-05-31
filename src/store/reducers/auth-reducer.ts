@@ -4,7 +4,8 @@ const initialState = {
 
 export const authReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-
+        case "login/SET-IS-LOGGED-IN":
+            return {...state, isLoggedIn: action.isLoggedIn}
         default:
             return state
     }
