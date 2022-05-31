@@ -1,6 +1,4 @@
-const initialState = {
-    isLoggedIn: false
-}
+import {ActionsType} from "../store";
 
 export const authReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
@@ -9,3 +7,5 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
             return state
     }
 }
+
+
