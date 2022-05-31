@@ -6,6 +6,7 @@ import {Login} from "../../features/Login/Login";
 import {ForgotPass} from "../../features/ForgotPass/ForgotPass";
 import {EnterNewPass} from "../../features/ForgotPass/EnterNewPass/EnterNewPass";
 import Error404 from "../../../common/404/Error404";
+import {Registration} from "../../features/Registration/Registration";
 
 export function Main() {
     return (
@@ -20,6 +21,10 @@ export function Main() {
                     element={<Login/>}
                 />
                 <Route
+                    path='registration'
+                    element={<Registration/>}
+                />
+                <Route
                     path="forgotPass"
                     element={<ForgotPass/>}
                 />
@@ -32,8 +37,6 @@ export function Main() {
                     element={<Error404/>}
                 />
             </Routes>
-
-            <Test/>
         </div>
     )
 }
