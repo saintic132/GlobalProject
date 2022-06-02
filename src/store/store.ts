@@ -18,8 +18,6 @@ let rootReducer = combineReducers({
 
 export const store: Store<ReduxStateType, ActionsType> = createStore(rootReducer, applyMiddleware(thunk))
 
-
-
 export const useAppDispatch = () => useDispatch<TypedDispatch>()
 export const useAppSelector: TypedUseSelectorHook<ReduxStateType> = useSelector
 

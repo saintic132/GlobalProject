@@ -5,6 +5,10 @@ import SuperButton from "../../../common/buttons/c2-SuperButton/SuperButton";
 import style from './Login.module.css'
 import {ForgotPass} from "../ForgotPass/ForgotPass";
 import {useFormik} from "formik";
+import {loginTC} from "../../../store/reducers/auth-reducer";
+import {useAppDispatch, useAppSelector} from "../../../store/store";
+import {Link, Navigate} from "react-router-dom";
+
 
 type FormikErrorType = {
     email?: string
@@ -13,6 +17,9 @@ type FormikErrorType = {
 }
 
 export const Login = () => {
+    const dispatch = useAppDispatch()
+    const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -34,9 +41,14 @@ export const Login = () => {
             return errors;
         },
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            dispatch(loginTC(values))
+            formik.resetForm()
         },
     })
+
+    if(isLoggedIn) {
+        return <Navigate to={'/'} />
+    }
 
     return (
             <div className={style.loginContainer}>

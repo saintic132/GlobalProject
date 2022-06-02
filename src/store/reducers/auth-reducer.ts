@@ -13,7 +13,6 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
             return state
     }
 }
-
 // types
 type InitialStateType = {
     isLoggedIn: boolean
@@ -24,18 +23,21 @@ export type ActionsType = ReturnType<typeof setLoggedInAC>
 const setLoggedInAC = (isLoggedIn:boolean) => ({type: 'login/SET-IS-LOGGED-IN', isLoggedIn} as const)
 
 // thunks
-const LogginTC = (data: LoginType) => {
-    return (dispatch: Dispatch<ActionsType>) => {
+export const loginTC = (data: LoginType) => {
+    return (dispatch: Dispatch) => {
         authAPI.login(data)
             .then((res) => {
                 dispatch(setLoggedInAC(true))
+            })
+            .catch((error) => {
+                alert(error)
             })
     }
 }
 
 // api
 export const instance = axios.create({
-    baseURL: 'http://localhost:7542/2.0/',
+    baseURL: 'https://neko-back.herokuapp.com/2.0',
     withCredentials: true,
 })
 
