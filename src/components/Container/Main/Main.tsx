@@ -1,6 +1,5 @@
 import React from 'react';
 import {Profile} from "./Profile/Profile";
-import {Test} from "./Test/Test";
 import {Route, Routes} from "react-router-dom";
 import {Login} from "../../features/Login/Login";
 import {ForgotPass} from "../../features/ForgotPass/ForgotPass";
@@ -32,8 +31,6 @@ export function Main() {
                     element={<Error404/>}
                 />
             </Routes>
-
-            <Test/>
         </div>
     )
 }
