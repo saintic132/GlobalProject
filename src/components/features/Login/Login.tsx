@@ -49,19 +49,27 @@ export const Login = () => {
                 <h2 className={style.subtitle}>Sign In</h2>
 
                 <form className={style.form} onSubmit={formik.handleSubmit}>
+                    <label>Email</label>
                     <SuperInputText className={style.inputText} {...formik.getFieldProps('email')}/>
                     {formik.touched.email && formik.errors.email && <div style={{color: 'red'}}>{formik.errors.email}</div>}
 
+                    <label>Password</label>
                     <SuperInputText className={style.inputText} {...formik.getFieldProps('password')}/>
                     {formik.touched.password && formik.errors.password && <div style={{color: 'red'}}>{formik.errors.password}</div>}
 
                     <SuperCheckbox className={style.inputCheckbox} {...formik.getFieldProps('rememberMe')}>Remember me</SuperCheckbox>
-                    <ForgotPass />
-                    <SuperButton className={style.btn} type={'submit'}>Login</SuperButton>
+                    <ForgotPass className={style.forgotPass} />
+                    <div className={style.btnContainer}>
+                        <SuperButton className={style.btn} type={'submit'}>Login</SuperButton>
+                    </div>
                 </form>
 
-                <div><a href={'#'}>Don’t have an account?</a></div>
-                <div><a href={'#'}>Sign Up</a></div>
+
+
+                <div className={style.helpBlock}>
+                    <a href={'#'}>Don’t have an account?</a><br/>
+                    <a href={'#'}>Sign Up</a>
+                </div>
             </div>
     )
 };
