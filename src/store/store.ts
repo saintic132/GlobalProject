@@ -2,9 +2,9 @@ import {applyMiddleware, combineReducers, Store, legacy_createStore as createSto
 import thunk, { ThunkDispatch } from "redux-thunk";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import profileReducer, {ProfileActionsType} from "./reducers/profile-reducer";
-import {authReducer} from "./reducers/auth-reducer";
+import {authReducer, LoginActionType} from "./reducers/auth-reducer";
 
-export type ActionsType = ProfileActionsType
+export type ActionsType = ProfileActionsType | LoginActionType
 export type ReduxStateType = ReturnType<typeof rootReducer>
 export type TypedDispatch = ThunkDispatch<ReduxStateType, any, ActionsType>
 

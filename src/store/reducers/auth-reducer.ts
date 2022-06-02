@@ -1,11 +1,12 @@
 import {Dispatch} from "redux";
 import axios, {AxiosResponse} from "axios";
+import {TypedDispatch} from "../store";
 
 const initialState = {
     isLoggedIn: false
 }
 
-export const authReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const authReducer = (state: InitialStateType = initialState, action: LoginActionType): InitialStateType => {
     switch (action.type) {
         case "login/SET-IS-LOGGED-IN":
             return {...state, isLoggedIn: action.isLoggedIn}
@@ -18,14 +19,14 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
 type InitialStateType = {
     isLoggedIn: boolean
 }
-export type ActionsType = ReturnType<typeof setLoggedInAC>
+export type LoginActionType = ReturnType<typeof setLoggedInAC>
 
 // actions
 const setLoggedInAC = (isLoggedIn:boolean) => ({type: 'login/SET-IS-LOGGED-IN', isLoggedIn} as const)
 
 // thunks
 export const loginTC = (data: LoginType) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: TypedDispatch) => {
         authAPI.login(data)
             .then((res) => {
                 dispatch(setLoggedInAC(true))
