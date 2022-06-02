@@ -1,0 +1,63 @@
+.loginContainer {
+    width: 413px;
+    border-radius: 8px;
+    background: #F9F9FE;
+    margin: 0 auto;
+    padding: 30px 33px 30px 33px;
+}
+
+.title {
+    text-align: center;
+}
+
+.subtitle {
+    padding-top: 32px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 38px;
+}
+
+label {
+    color: #24254A;
+    opacity: 0.5;
+}
+
+.inputText {
+    margin-top: 24px;
+    border: none;
+    border-bottom: 2px solid rgba(36, 37, 74, .2);
+    padding: 5px 0;
+}
+
+.inputCheckbox {
+    margin-top: 24px;
+}
+
+.forgotPass {
+    text-align: right;
+    margin-top: 24px;
+}
+
+.btnContainer {
+    text-align: center;
+ }
+
+.btn {
+    margin-top: 92px;
+    width: 266px;
+    height: 36px;
+    background: #21268F;
+    border-radius: 30px;
+    color: #ECECF9;
+    font-size: 16px;
+    align-items: center;
+}
+
+.helpBlock {
+    text-align: center;
+    margin-top: 31px;
+}

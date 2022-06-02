@@ -1,8 +1,12 @@
 import React from 'react';
 
-export function ForgotPass() {
+type PropsType = {
+    className?: string
+}
+
+export function ForgotPass(props: PropsType) {
     return (
-        <div>
+        <div className={props.className}>
             ForgotPass
         </div>
  )
