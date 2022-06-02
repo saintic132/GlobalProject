@@ -13,6 +13,7 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
             return state
     }
 }
+
 // types
 type InitialStateType = {
     isLoggedIn: boolean

@@ -10,13 +10,6 @@ import {useAppDispatch, useAppSelector} from "../../../store/store";
 import { Navigate} from "react-router-dom";
 import * as Yup from 'yup';
 
-
-// type FormikErrorType = {
-//     email?: string
-//     password?: string
-//     rememberMe?: boolean
-// }
-
 export const Login = () => {
     const dispatch = useAppDispatch()
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
@@ -63,8 +56,6 @@ export const Login = () => {
                         <SuperButton className={style.btn} type={'submit'}>Login</SuperButton>
                     </div>
                 </form>
-
-
 
                 <div className={style.helpBlock}>
                     <a href={'#'}>Don’t have an account?</a><br/>
