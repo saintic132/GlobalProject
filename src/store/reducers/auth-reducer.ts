@@ -1,6 +1,5 @@
-import {Dispatch} from "redux";
-import axios, {AxiosResponse} from "axios";
 import {TypedDispatch} from "../store";
+import { authAPI, LoginType } from "../../common/API/API";
 
 const initialState = {
     isLoggedIn: false
@@ -37,34 +36,6 @@ export const loginTC = (data: LoginType) => {
     }
 }
 
-// api
-export const instance = axios.create({
-    baseURL: 'https://neko-back.herokuapp.com/2.0',
-    withCredentials: true,
-})
 
-export const authAPI = {
-    login(data: LoginType) {
-        return instance.post<LoginType, AxiosResponse<ResponseType>>(`/auth/login`, data)
-    },
-}
 
-type LoginType = {
-    email: string
-    password: string
-    rememberMe: boolean
-}
 
-type ResponseType = {
-    _id: string;
-    email: string;
-    name: string;
-    avatar?: string;
-    publicCardPacksCount: number;
-    created: Date;
-    updated: Date;
-    isAdmin: boolean;
-    verified: boolean;
-    rememberMe: boolean;
-    error?: string;
-}

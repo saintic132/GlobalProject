@@ -14,6 +14,12 @@ export const userAPI = {
     }
 }
 
+export const authAPI = {
+    login(data: LoginType) {
+        return instance.post<LoginType, AxiosResponse<ResponseType>>(`/auth/login`, data)
+    },
+}
+
 type UpdatedUser = {
     _id: string;
     email: string;
@@ -31,4 +37,10 @@ type ResponseType<D = {}> = {
     token: string
     tokenDeathTime: number
     updatedUser: D
+}
+
+export type LoginType = {
+    email: string
+    password: string
+    rememberMe: boolean
 }
