@@ -9,5 +9,5 @@ export function ForgotPass(props: PropsType) {
         <div className={props.className}>
             ForgotPass
         </div>
- )
+    )
 }
