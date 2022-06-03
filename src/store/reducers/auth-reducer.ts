@@ -52,7 +52,7 @@ export const loginTC = (data: LoginType) => {
     return (dispatch: TypedDispatch) => {
         authAPI.login(data)
             .then((res) => {
-                dispatch(setLoggedInAC(res.data.updatedUser, true))
+                dispatch(setLoggedInAC(res.data, true))
             })
             .catch((error) => {
                 alert(error)

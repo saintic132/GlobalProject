@@ -15,7 +15,7 @@ type ProfilePropsType = {
 const Profile: React.FC<ProfilePropsType> = () => {
 
     const profileData = useAppSelector(state => state.profile)
-    const userProfile = useAppSelector(state => state.auth)
+    // const userProfile = useAppSelector(state => state.auth)
     const dispatch = useAppDispatch()
 
     const clickToEditProfile = (editMode: boolean) => {
@@ -36,8 +36,8 @@ const Profile: React.FC<ProfilePropsType> = () => {
 
                     {/*Компонента с отрисовкой User*/}
                     <UserProfile
-                        name={userProfile.name}
-                        avatar={userProfile.avatar}
+                        name={profileData.name}
+                        avatar={profileData.avatar}
                         clickToEditProfile={clickToEditProfile}
                     />
 
