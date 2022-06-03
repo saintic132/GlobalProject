@@ -6,13 +6,13 @@ type RegistrationInitialStateType = {
     errorUnsame: null | string
 }
 
-const initialState = {
+const initialState: RegistrationInitialStateType = {
     disableButton: true,
     errorUnsame: null,
 }
 
 
-const registrationReducer = (state = initialState,
+export const registrationReducer = (state = initialState,
                              action: RegistrationActionsType): RegistrationInitialStateType => {
     switch (action.type) {
         case ACTIONS_REG_TYPE.DISABLE_REGBUTTON_REGISTRATION:
@@ -53,6 +53,6 @@ export const registrationTC = (data: RegistrationParamsType) => (dispatch: Dispa
             console.log(res.data)
         })
         .catch(e => {
-            console.log(e.error)
+            dispatch(errorUnsamePasswordAC(e.response.data.error))
         })
 }

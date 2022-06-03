@@ -5,7 +5,7 @@ import style from './Registration.module.css';
 import {Dispatch} from "redux";
 import {registrationAPI, RegistrationParamsType} from "../../../common/API/RegistrationAPI";
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {registrationTC} from "./RegistrationReducer";
+import {errorUnsamePasswordAC, registrationTC} from "./RegistrationReducer";
 import {useSelector} from "react-redux";
 
 export const Registration = () => {
@@ -20,6 +20,8 @@ export const Registration = () => {
             alert(JSON.stringify(values));
         },
     })*/
+    const dispatch = useAppDispatch()
+
     const [email, setEmail] = useState('')
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.currentTarget.value)
@@ -32,10 +34,8 @@ export const Registration = () => {
     const onChangeConfirmPassword = (e: ChangeEvent<HTMLInputElement>) => {
         setConfirmPassword(e.currentTarget.value)
     }
-    const disableButton = useAppSelector(store => store.)
-    const dispatch = useAppDispatch()
 
-
+    const errorUnsame = useAppSelector(store => store.registration.errorUnsame)
 
     const initialValues = {
         email: '',
@@ -43,9 +43,12 @@ export const Registration = () => {
         confirmPassword: '',
     }
     const onSubmit = () => {
-        dispatch(registrationTC({email, password}))
+        if (password === confirmPassword) {
+            dispatch(registrationTC({email, password}))
+        } else {
+            dispatch(errorUnsamePasswordAC('Passwords unsame'))
+        }
     }
-
     return (
         <div className={style.registration__container}>
             <div className={style.registration__edit_body}>
@@ -89,6 +92,11 @@ export const Registration = () => {
                                 onChange={onChangeConfirmPassword}
                             />
                         </div>
+                        <div className={style.registration__edit}>
+                            <span>
+                                {errorUnsame}
+                            </span>
+                        </div>
                         <div className={style.registration__edit_buttons}>
                             <SuperButton
                                 className={style.registration__edit_buttonCancel}
@@ -99,7 +107,7 @@ export const Registration = () => {
                             <SuperButton
                                 className={style.registration__edit_buttonRegistration}
                                 type='submit'
-                                disabled={}
+                                disabled={!(email && password && confirmPassword)}
                             >
                                 Register
                             </SuperButton>
