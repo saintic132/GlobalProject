@@ -1,12 +1,10 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {Field, Form, Formik, useFormik} from "formik";
 import SuperButton from "../../../common/buttons/c2-SuperButton/SuperButton";
 import style from './Registration.module.css';
-import {Dispatch} from "redux";
-import {registrationAPI, RegistrationParamsType} from "../../../common/API/RegistrationAPI";
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {errorUnsamePasswordAC, registrationTC} from "./RegistrationReducer";
-import {useSelector} from "react-redux";
+import {errorUnsamePasswordAC, registrationTC, setRegisterAC} from "./RegistrationReducer";
+import {useNavigate} from "react-router-dom";
 
 export const Registration = () => {
 
@@ -34,14 +32,30 @@ export const Registration = () => {
     const onChangeConfirmPassword = (e: ChangeEvent<HTMLInputElement>) => {
         setConfirmPassword(e.currentTarget.value)
     }
+    const navigate = useNavigate()
 
     const errorUnsame = useAppSelector(store => store.registration.errorUnsame)
+    const register = useAppSelector(store => store.registration.registerCompleted)
 
     const initialValues = {
         email: '',
         password: '',
         confirmPassword: '',
     }
+    useEffect(() => {
+
+        let newTO = setTimeout(() => {
+            if (register) {
+                navigate('login')
+                dispatch(setRegisterAC(false))
+            }
+        }, 2500)
+        /*return () => {
+            clearTimeout(newTO)
+            dispatch(setRegisterAC(false))
+        }*/
+    }, [register])
+
     const onSubmit = () => {
         if (password === confirmPassword) {
             dispatch(registrationTC({email, password}))
@@ -97,6 +111,7 @@ export const Registration = () => {
                                 {errorUnsame}
                             </span>
                         </div>
+                        {register && <div>Register completed</div>}
                         <div className={style.registration__edit_buttons}>
                             <SuperButton
                                 className={style.registration__edit_buttonCancel}
