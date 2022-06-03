@@ -1,5 +1,12 @@
-import {registrationAPI, RegistrationParamsType} from "../../../common/API/RegistrationAPI";
+import {registrationAPI, RegistrationParamsType} from "../../common/API/RegistrationAPI";
 import {Dispatch} from "redux";
+
+//ACTIONS
+export enum ACTIONS_REG_TYPE {
+    DISABLE_REGBUTTON_REGISTRATION = 'REGISTRATION/DISABLE_REGBUTTON_REGISTRATION',
+    ERROR_UNSAME_PASSWORD = 'REGISTRATION/ERROR_UNSAME_PASSWORD',
+    SET_EMAIL = 'REGISTRATION/SET_EMAIL'
+}
 
 type RegistrationInitialStateType = {
     disableButton: boolean
@@ -29,13 +36,6 @@ export const registrationReducer = (state = initialState,
             return state
 
     }
-}
-
-//ACTIONS
-export enum ACTIONS_REG_TYPE {
-    DISABLE_REGBUTTON_REGISTRATION = 'REGISTRATION/DISABLE_REGBUTTON_REGISTRATION',
-    ERROR_UNSAME_PASSWORD = 'REGISTRATION/ERROR_UNSAME_PASSWORD',
-    SET_EMAIL = 'REGISTRATION/SET_EMAIL'
 }
 
 export const disableButtonRegisterAC = (disableButton: boolean) => {

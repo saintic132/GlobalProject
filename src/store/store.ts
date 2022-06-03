@@ -3,7 +3,7 @@ import thunk, { ThunkDispatch } from "redux-thunk";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import profileReducer, {ProfileActionsType} from "./reducers/profile-reducer";
 import {authReducer, LoginActionType} from "./reducers/auth-reducer";
-import {RegistrationActionsType, registrationReducer} from "../components/features/Registration/RegistrationReducer";
+import {RegistrationActionsType, registrationReducer} from "./reducers/registration-reducer";
 
 export type ActionsType = ProfileActionsType | LoginActionType | RegistrationActionsType
 export type ReduxStateType = ReturnType<typeof rootReducer>

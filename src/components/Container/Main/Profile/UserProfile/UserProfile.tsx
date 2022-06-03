@@ -4,7 +4,7 @@ import SuperButton from "../../../../../common/buttons/c2-SuperButton/SuperButto
 import noAvatar from '../../../../../common/img/no-avatar.png'
 
 type UserProfilePropsType = {
-    name: string
+    name: string | null
     avatar: string | undefined
     clickToEditProfile: (editProfile: boolean) => void
 }

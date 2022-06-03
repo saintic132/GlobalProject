@@ -39,7 +39,7 @@ export const EditProfile = memo(({profileData, clickToEditProfile}: EditProfileP
         avatar: null,
     }
     const validate = Yup.object({
-        name: Yup.string().max(15, 'Max length is 15').required('Required'),
+        name: Yup.string().max(40, 'Max length is 15').required('Required'),
     })
     const onSubmit = (values: FormikValues) => {
         let {name, avatar} = values

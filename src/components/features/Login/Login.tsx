@@ -7,7 +7,7 @@ import {ForgotPass} from "../ForgotPass/ForgotPass";
 import {useFormik} from "formik";
 import {loginTC} from "../../../store/reducers/auth-reducer";
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import { Navigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import * as Yup from 'yup';
 
 export const Login = () => {
@@ -32,26 +32,32 @@ export const Login = () => {
         },
     })
 
-    if(isLoggedIn) {
-        return <Navigate to={'/'} />
+    if (isLoggedIn) {
+        return <Navigate to={'/'}/>
     }
 
     return (
-            <div className={style.loginContainer}>
+        <div className={style.login__container}>
+            <div className={style.login__body}>
                 <h1 className={style.title}>It-incubator</h1>
                 <h2 className={style.subtitle}>Sign In</h2>
 
                 <form className={style.form} onSubmit={formik.handleSubmit}>
                     <label>Email</label>
-                    <SuperInputText className={style.inputText} {...formik.getFieldProps('email')}/>
-                    {formik.touched.email && formik.errors.email && <div style={{color: 'red'}}>{formik.errors.email}</div>}
+                    <SuperInputText className={style.inputText}
+                                    placeholder='Enter your email' {...formik.getFieldProps('email')}/>
+                    {formik.touched.email && formik.errors.email &&
+                    <div style={{color: 'red'}}>{formik.errors.email}</div>}
 
                     <label>Password</label>
-                    <SuperInputText className={style.inputText} {...formik.getFieldProps('password')}/>
-                    {formik.touched.password && formik.errors.password && <div style={{color: 'red'}}>{formik.errors.password}</div>}
+                    <SuperInputText className={style.inputText}
+                                    placeholder='Enter your password' {...formik.getFieldProps('password')}/>
+                    {formik.touched.password && formik.errors.password &&
+                    <div style={{color: 'red'}}>{formik.errors.password}</div>}
 
-                    <SuperCheckbox className={style.inputCheckbox} {...formik.getFieldProps('rememberMe')}>Remember me</SuperCheckbox>
-                    <ForgotPass className={style.forgotPass} />
+                    <SuperCheckbox className={style.inputCheckbox} {...formik.getFieldProps('rememberMe')}>Remember
+                        me</SuperCheckbox>
+                    <ForgotPass className={style.forgotPass}/>
                     <div className={style.btnContainer}>
                         <SuperButton className={style.btn} type={'submit'}>Login</SuperButton>
                     </div>
@@ -62,5 +68,6 @@ export const Login = () => {
                     <a href={'#'}>Sign Up</a>
                 </div>
             </div>
+        </div>
     )
 };

@@ -40,7 +40,7 @@
 }
 
 .packList__cards {
-    flex: 0 1 12.5%;
+    flex: 0 1 15%;
 }
 
 .packList__updates {
@@ -52,7 +52,7 @@
 }
 
 .packList__action {
-    flex: 0 1 22.5%;
+    flex: 0 1 20%;
     display: flex;
     justify-content: space-between;
 }

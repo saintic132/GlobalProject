@@ -1,23 +1,14 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {Field, Form, Formik, useFormik} from "formik";
+import {Field, Form, Formik} from "formik";
 import SuperButton from "../../../common/buttons/c2-SuperButton/SuperButton";
 import style from './Registration.module.css';
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {errorUnsamePasswordAC, registrationTC, setRegisterAC} from "./RegistrationReducer";
+import {errorUnsamePasswordAC, registrationTC, setRegisterAC} from "../../../store/reducers/registration-reducer";
 import {useNavigate} from "react-router-dom";
+
 
 export const Registration = () => {
 
-    /*const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-            confirmPassword: '',
-        },
-        onSubmit: values => {
-            alert(JSON.stringify(values));
-        },
-    })*/
     const dispatch = useAppDispatch()
 
     const [email, setEmail] = useState('')
@@ -42,19 +33,23 @@ export const Registration = () => {
         password: '',
         confirmPassword: '',
     }
-    useEffect(() => {
 
-        let newTO = setTimeout(() => {
-            if (register) {
+    useEffect(() => {
+        let newTo: any
+        if (register) {
+            newTo = setTimeout(() => {
                 navigate('/login')
                 dispatch(setRegisterAC(false))
+            }, 2500)
+        }
+
+        return () => {
+            if (register) {
+                clearTimeout(newTo)
             }
-        }, 2500)
-        /*return () => {
-            clearTimeout(newTO)
-            dispatch(setRegisterAC(false))
-        }*/
-    }, [register])
+        }
+
+    }, [register, dispatch, navigate])
 
     const onSubmit = () => {
         if (password === confirmPassword) {
@@ -73,12 +68,12 @@ export const Registration = () => {
                 <Formik
                     initialValues={initialValues}
                     onSubmit={onSubmit}
-
                 >
                     <Form className={style.registration__edit}>
                         <div className={style.registration__edit}>
                             <label>Email</label>
                             <Field
+                                className={style.registration__edit_input}
                                 name='email'
                                 type='text'
                                 placeholder='Enter your Email'
@@ -89,6 +84,7 @@ export const Registration = () => {
                         <div className={style.registration__edit}>
                             <label>Password</label>
                             <Field
+                                className={style.registration__edit_input}
                                 name='password'
                                 type='password'
                                 placeholder='Enter password'
@@ -99,6 +95,7 @@ export const Registration = () => {
                         <div className={style.registration__edit}>
                             <label>Confirm password</label>
                             <Field
+                                className={style.registration__edit_input}
                                 name='confirmPassword'
                                 type='password'
                                 placeholder='Enter password'

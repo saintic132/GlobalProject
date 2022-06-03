@@ -16,11 +16,11 @@ export const userAPI = {
 
 export const authAPI = {
     login(data: LoginType) {
-        return instance.post<LoginType, AxiosResponse<ResponseType>>(`/auth/login`, data)
+        return instance.post<LoginType, AxiosResponse<ResponseType<UpdatedUser>>>(`/auth/login`, data)
     },
 }
 
-type UpdatedUser = {
+export type UpdatedUser = {
     _id: string;
     email: string;
     name: string;

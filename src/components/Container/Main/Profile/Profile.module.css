@@ -1,8 +1,8 @@
 .profile__container {
-    max-width: 1010px;
-    height: 640px;
     width: 100%;
-    border: 1px solid black;
+    height: 50%;
+    border-radius: 8px;
+    background-color: white;
 }
 
 .profile__body {
