@@ -46,7 +46,7 @@ export const Registration = () => {
 
         let newTO = setTimeout(() => {
             if (register) {
-                navigate('login')
+                navigate('/login')
                 dispatch(setRegisterAC(false))
             }
         }, 2500)
