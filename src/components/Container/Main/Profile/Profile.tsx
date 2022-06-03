@@ -36,8 +36,8 @@ const Profile: React.FC<ProfilePropsType> = () => {
 
                     {/*Компонента с отрисовкой User*/}
                     <UserProfile
-                        name={userProfile.name}
-                        avatar={userProfile.avatar}
+                        name={profileData.name}
+                        avatar={profileData.avatar}
                         clickToEditProfile={clickToEditProfile}
                     />
 
