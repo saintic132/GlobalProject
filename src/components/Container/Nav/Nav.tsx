@@ -17,6 +17,7 @@ export const Nav = () => {
             <NavLink to={'/'} onClick={clickToGoingMainProfile}>Profile</NavLink>
             <NavLink to={'login'}>Login</NavLink>
             <NavLink to={'registration'}>Registration</NavLink>
+            <NavLink to={'cards'}>cards</NavLink>
             <NavLink to={'forgotPass'}>ForgotPass</NavLink>
             <NavLink to={'enterNewPass'}>EnterNewPass</NavLink>
         </div>

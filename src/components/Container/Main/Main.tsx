@@ -7,6 +7,7 @@ import {EnterNewPass} from "../../features/ForgotPass/EnterNewPass/EnterNewPass"
 import Error404 from "../../../common/404/Error404";
 import {Registration} from "../../features/Registration/Registration";
 import {useAppSelector} from "../../../store/store";
+import {CardTable} from "./Cards/cards-ui/CardTable";
 
 export function Main() {
 
@@ -26,6 +27,10 @@ export function Main() {
                 <Route
                     path='registration'
                     element={<Registration/>}
+                />
+                <Route
+                    path='cards'
+                    element={<CardTable/>}
                 />
                 <Route
                     path="forgotPass"
