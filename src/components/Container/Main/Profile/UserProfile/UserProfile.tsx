@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import style from "./UserProfile.module.css";
 import SuperButton from "../../../../../common/buttons/c2-SuperButton/SuperButton";
-import noAvatar from '../../../../../common/img/no-avatar.png'
+import noAvatar from '../../../../../assets/img/avatar/no-avatar.png'
 
 type UserProfilePropsType = {
     name: string | null
@@ -13,7 +13,7 @@ export const UserProfile = memo(({name, avatar, clickToEditProfile}: UserProfile
     return (
         <div className={style.userProfile}>
             <img
-                src={avatar === undefined || avatar === null || avatar === 'email' ? noAvatar: avatar}
+                src={avatar ? noAvatar: avatar}
                 alt="avatar"
             />
             <div className={style.userProfile__name}>
