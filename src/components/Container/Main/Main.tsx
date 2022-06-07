@@ -1,31 +1,32 @@
 import React from 'react';
 import Profile from "./Profile/Profile";
 import {Route, Routes} from "react-router-dom";
-import {Login} from "../../features/Login/Login";
-import {ForgotPass} from "../../features/ForgotPass/ForgotPass";
-import {EnterNewPass} from "../../features/ForgotPass/EnterNewPass/EnterNewPass";
+import {Login} from "../../features/login/Login";
+import {ForgotPass} from "../../features/forgotPassword/ForgotPass";
+import {CheckEmail} from "../../features/forgotPassword/CheckEmail/CheckEmail";
 import Error404 from "../../../common/404/Error404";
-import {Registration} from "../../features/Registration/Registration";
+import {Registration} from "../../features/register/Registration";
 import {useAppSelector} from "../../../store/store";
+import {SetNewPassword} from "../../features/forgotPassword/SetNewPassword/SetNewPassword";
 import {CardTable} from "./Cards/cards-ui/CardTable";
 
 export function Main() {
 
-    const isLoginIn = useAppSelector(state => state.auth.isLoggedIn)
+    const isLoggedIn = useAppSelector(state => state.profile.helpers.isLoggedIn)
 
     return (
         <>
             <Routes>
                 <Route
                     path="/"
-                    element={<Profile isLoginIn={isLoginIn}/>}
+                    element={<Profile isLoginIn={isLoggedIn}/>}
                 />
                 <Route
                     path="login"
                     element={<Login/>}
                 />
                 <Route
-                    path='registration'
+                    path='register'
                     element={<Registration/>}
                 />
                 <Route
@@ -33,7 +34,7 @@ export function Main() {
                     element={<CardTable/>}
                 />
                 <Route
-                    path="forgotPass"
+                    path="forgot"
                     element={<ForgotPass/>}
                 />
                 <Route
@@ -43,6 +44,14 @@ export function Main() {
                 <Route
                     path="*"
                     element={<Error404/>}
+                />
+                <Route
+                    path="recover"
+                    element={<CheckEmail/>}
+                />
+                <Route
+                    path="set-new-password/:token"
+                    element={<SetNewPassword/>}
                 />
             </Routes>
         </>
