@@ -16,21 +16,24 @@ export const CardTable = () => {
 
 
     return (
-        <div className={style.packList__container}>
+        <div className={style.cardTable__container}>
             {/*<SuperModalWindow activeModal={activeModal} activationModalWindow={activationModalWindow}/> */}
             <h2>Some pack...</h2>
-            <div>
-                <SuperInputText label={'Question'}/>
-                <SuperInputText label={'Answer'}/>
+            <div className={style.cardTable__find_and_addCard}>
+                <div className={style.cardTable__find}>
+                    <SuperInputText label={'Question'}/>
+                    <SuperInputText label={'Answer'}/>
+                </div>
                 <SuperButton >
                     Add card
                 </SuperButton>
             </div>
-            <div className={style.packList__row}>
-                <span className={style.packList__question}>Question</span>
-                <span className={style.packList__answer}>Answer</span>
-                <span className={style.packList__last_updated}>Last Updated</span>
-                <span className={style.packList__grade}>Grade</span>
+
+            <div className={style.cardTable__row}>
+                <span className={style.cardTable__question}>Question</span>
+                <span className={style.cardTable__answer}>Answer</span>
+                <span className={style.cardTable__last_updated}>Last Updated</span>
+                <span className={style.cardTable__grade}>Grade</span>
             </div>
             <div>
 

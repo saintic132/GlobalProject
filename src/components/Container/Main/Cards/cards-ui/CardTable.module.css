@@ -1,15 +1,21 @@
-.packList__container {
-    width: 70%;
+.cardTable__container {
+    width: 100%;
     margin-top: 25px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 8px;
+}
+.cardTable__container > h2 {
+    margin-left: 3%;
 }
 
-.packList__row {
+.cardTable__row {
     display: flex;
     background-color: #ECECF9;
     padding: 16px 0 16px 24px;
 }
 
-.packList__row > span {
+.cardTable__row > span {
     font-style: normal;
     font-weight: 700;
     font-size: 13px;
@@ -17,17 +23,17 @@
     color: #2D2E46;
 }
 
-.packList__list {
+.cardTable__list {
     display: flex;
     background-color: #fff;
     padding: 16px 0 16px 24px;
 }
 
-.packList__list:nth-child(even) {
+.cardTable__list:nth-child(even) {
     background-color: #F8F7FD;
 }
 
-.packList__list > span {
+.cardTable__list > span {
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -35,41 +41,72 @@
     color: #000000;
 }
 
-.packList__question {
+.cardTable__find_and_addCard {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 0 10px 0;
+}
+.cardTable__find_and_addCard > button {
+    background: #D7D8EF;
+    border-radius: 2px;
+    border: 2px solid #D7D8EF;
+    color: #21268F;
+    margin-right: 3%;
+}
+.cardTable__find {
+    margin-left: 3%;
+}
+.cardTable__find > label {
+    margin-right: 6px;
+}
+.cardTable__find > input {
+    margin-right: 20px;
+}
+
+.cardTable__question {
     flex: 0 1 25%;
 }
 
-.packList__cards {
+.cardTable__cards {
     flex: 0 1 15%;
 }
 
-.packList__updates {
+.cardTable__updates {
     flex: 0 1 20%;
 }
 
-.packList__answer {
+.cardTable__answer {
     flex: 0 1 20%;
 }
-.packList__last_updated {
+.cardTable__last_updated {
     flex: 0 1 20%;
 }
 
-.packList__grade {
+.cardTable__grade {
     flex: 0 1 20%;
     display: flex;
     justify-content: space-between;
 }
 
-.packList__button_delete {
+.cardTable__action {
+    display: flex;
+    justify-content: space-around;
+    width: 13%;
+}
+
+.cardTable__button_delete {
     background: #F1453D;
     border-radius: 2px;
     border: 2px solid red;
     color: #FFFFFF;
+    margin-right: 2px;
 }
 
-.packList__button_edit_learn {
+.cardTable__button_edit_learn {
     background: #D7D8EF;
     border-radius: 2px;
     border: 2px solid #D7D8EF;
     color: #21268F;
+    margin-right: 2px;
 }
