@@ -6,21 +6,59 @@ const instance = axios.create({
 })
 
 export const userAPI = {
+    registration(email: string, password: string) {
+        return instance.post<{ email: string, password: string }, AxiosResponse<RegistrationResponseType>>('auth/register', {
+            email,
+            password
+        })
+    },
+    login(email: string, password: string, rememberMe: boolean) {
+        return instance.post<{ email: string, password: string, rememberUser: boolean }, AxiosResponse<User>>(`/auth/login`, {
+            email,
+            password,
+            rememberMe
+        })
+    },
+    authMe() {
+      return instance.post<null, AxiosResponse<RegistrationResponseType>>('/auth/me')
+    },
+    logout() {
+        return instance.delete<null, AxiosResponse<{ info: string }>>('/auth/me')
+    },
+    forgotPassword(email: string) {
+        return instance.post<{ email: string }, AxiosResponse<{ info: string }>>('/auth/forgot', {
+            email,
+            message: `<div style="background-color: lime; padding: 15px">password recovery link: <a href='https://saintic132.github.io/GlobalProject/#/set-new-password/$token$'>link</a></div>`
+        })
+    },
+    setNewPassword(password: string, token: string) {
+        return instance.post<{ password: string, token: string }, AxiosResponse<{ info: string }>>('/auth/set-new-password', {
+            password,
+            resetPasswordToken: token
+        })
+    },
     editProfile(name: string, avatar?: string) {
-        return instance.put<{ name: string, avatar?: string }, AxiosResponse<ResponseType<UpdatedUser>>>('/auth/me', {
+        return instance.put<{ name: string, avatar?: string }, AxiosResponse<ResponseType<User>>>('/auth/me', {
             name,
             avatar
         })
-    }
-}
-
-export const authAPI = {
-    login(data: LoginType) {
-        return instance.post<LoginType, AxiosResponse<ResponseType<UpdatedUser>>>(`/auth/login`, data)
     },
 }
 
-export type UpdatedUser = {
+export type RegistrationResponseType = {
+    created: string
+    email: string
+    isAdmin: boolean
+    name: string
+    publicCardPacksCount: number
+    rememberMe: boolean
+    updated: string
+    verified: boolean
+    __v: number
+    _id: string
+}
+
+export type User = {
     _id: string;
     email: string;
     name: string;
