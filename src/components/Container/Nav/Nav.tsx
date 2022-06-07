@@ -51,13 +51,6 @@ export const Nav = () => {
     }
 
     return (
-        <div className={style.container}>
-            <NavLink to={'/'} onClick={clickToGoingMainProfile}>Profile</NavLink>
-            <NavLink to={'login'}>Login</NavLink>
-            <NavLink to={'registration'}>Registration</NavLink>
-            <NavLink to={'cards'}>cards</NavLink>
-            <NavLink to={'forgotPass'}>ForgotPass</NavLink>
-            <NavLink to={'enterNewPass'}>EnterNewPass</NavLink>
         <div className={style.nav__container__notLoginIn}>
                 <NavLink
                     to='/'

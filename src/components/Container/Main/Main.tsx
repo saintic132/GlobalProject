@@ -38,10 +38,6 @@ export function Main() {
                     element={<ForgotPass/>}
                 />
                 <Route
-                    path="enterNewPass"
-                    element={<EnterNewPass/>}
-                />
-                <Route
                     path="*"
                     element={<Error404/>}
                 />
