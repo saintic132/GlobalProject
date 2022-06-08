@@ -2,10 +2,11 @@ import React from 'react';
 import SuperInputText from "../../../../../common/buttons/c1-SuperInputText/SuperInputText";
 import style from "./ProfilePacksList.module.css";
 import {PackList} from "./Packs/PackList";
+import search from '../../../../../assets/img/search_bar/search.png'
 
 export const ProfilePacksList = () => {
     return (
-        <>
+        <div className={style.packs__body}>
             <h2>
                 My packs list
             </h2>
@@ -14,8 +15,9 @@ export const ProfilePacksList = () => {
                 placeholder="Search..."
                 // value={email}
             />
+            <img src={search} alt="search"/>
             {/*Компонента с отрисовкой Карточек*/}
             <PackList/>
-        </>
+        </div>
     )
 }

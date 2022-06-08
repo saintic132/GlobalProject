@@ -25,6 +25,11 @@
 
 .packList__list:nth-child(even) {
     background-color: #F8F7FD;
+
+}
+
+.packList__list:nth-child(even) {
+    background-color: #F8F7FD;
 }
 
 .packList__list > span {
@@ -44,17 +49,40 @@
 }
 
 .packList__updates {
+    position: relative;
     flex: 0 1 20%;
+}
+
+.packList__updates img {
+    width: 10px;
+    height: 8px;
+    position: absolute;
+    top: 5px;
+    left: 88px;
 }
 
 .packList__create {
     flex: 0 1 20%;
 }
 
+.packList__sort {
+    width: 100%;
+    height: 100%;
+}
+
 .packList__action {
     flex: 0 1 20%;
     display: flex;
     justify-content: space-between;
+}
+
+.packList__action button {
+    cursor: pointer;
+}
+
+.packList__action button:active {
+    box-shadow: 0 1px #666;
+    transform: translateY(1px);
 }
 
 .packList__button_delete {
