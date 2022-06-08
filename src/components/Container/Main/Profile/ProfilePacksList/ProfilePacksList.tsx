@@ -15,7 +15,10 @@ export const ProfilePacksList = () => {
                 placeholder="Search..."
                 // value={email}
             />
-            <img src={search} alt="search"/>
+            <img
+                className={style.profile__body_img_search}
+                src={search}
+                alt="search"/>
             {/*Компонента с отрисовкой Карточек*/}
             <PackList/>
         </div>

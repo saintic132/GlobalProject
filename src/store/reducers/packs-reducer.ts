@@ -25,7 +25,7 @@ const initialState = {
     maxCardsCount: 4,
     minCardsCount: 0,
     page: 1,
-    pageCount: 4
+    pageCount: 4,
 }
 
 export enum ACTIONS_PROFILE_TYPE {
@@ -37,7 +37,7 @@ export const packsReducer = (state: InitialPacksStateType = initialState, action
         case ACTIONS_PROFILE_TYPE.SET_PACKS: {
             return {
                 ...state,
-                cardPacks: [...action.packs]
+                cardPacks: [...action.packs],
             }
         }
         default:

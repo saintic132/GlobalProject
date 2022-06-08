@@ -49,16 +49,26 @@
 }
 
 .packList__updates {
+    cursor: pointer;
     position: relative;
     flex: 0 1 20%;
 }
 
-.packList__updates img {
+.packList__updates_img_0 {
+    position: absolute;
     width: 10px;
     height: 8px;
-    position: absolute;
     top: 5px;
     left: 88px;
+}
+
+.packList__updates_img_1 {
+    position: absolute;
+    width: 10px;
+    height: 8px;
+    top: 5px;
+    left: 88px;
+    transform: rotate(180deg);
 }
 
 .packList__create {

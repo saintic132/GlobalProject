@@ -21,10 +21,10 @@
     padding-left: 25px;
 }
 
-.packs__body img {
+.profile__body_img_search {
     position: absolute;
     height: 13px;
     width: 13px;
-    top: 59px;
+    top: 61px;
     left: 7px;
 }

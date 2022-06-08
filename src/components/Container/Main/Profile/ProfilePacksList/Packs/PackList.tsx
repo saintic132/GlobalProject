@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './PackList.module.css'
 import {useAppDispatch, useAppSelector} from "../../../../../../store/store";
 import {getPacksTC} from "../../../../../../store/reducers/packs-reducer";
@@ -10,12 +10,20 @@ export const PackList = () => {
     const packs = useAppSelector(state => state.packs.cardPacks)
     const dispatch = useAppDispatch()
 
+    const [sortNumber, setSortNumber] = useState<number>(0);
+
     useEffect(() => {
         dispatch(getPacksTC())
     }, [dispatch])
 
-    const onClockHandleSort = () => {
-        dispatch(getPacksTC('1updated'))
+    const onClickHandleSortByUpdate = () => {
+        if (sortNumber === 0) {
+            dispatch(getPacksTC(sortNumber + 'updated'))
+            setSortNumber(1)
+        } else {
+            dispatch(getPacksTC(sortNumber + 'updated'))
+            setSortNumber(0)
+        }
     }
 
     return (
@@ -27,14 +35,13 @@ export const PackList = () => {
                 <span className={style.packList__cards}>
                     Cards
                 </span>
-                <span className={style.packList__updates}>
-                    <div
-                        className={style.packList__sort}
-                        onClick={onClockHandleSort}
-                    >
+                <span className={style.packList__updates} onClick={onClickHandleSortByUpdate}>
                         Last Updated
-                    <img src={sortIcon} alt="sort"/>
-                    </div>
+                    <img
+                        className={sortNumber ? style.packList__updates_img_1 : style.packList__updates_img_0}
+                        src={sortIcon}
+                        alt="sort"
+                    />
                 </span>
                 <span className={style.packList__create}>
                     Created by
