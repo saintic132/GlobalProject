@@ -10,7 +10,7 @@ export const PackList = () => {
     const packs = useAppSelector(state => state.packs.cardPacks)
     const dispatch = useAppDispatch()
 
-    const [sortNumber, setSortNumber] = useState<number>(0);
+    const [sortNumber, setSortNumber] = useState<number>(1);
 
     useEffect(() => {
         dispatch(getPacksTC())

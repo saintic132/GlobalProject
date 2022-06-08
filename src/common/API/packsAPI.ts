@@ -3,7 +3,7 @@ import {AxiosResponse} from "axios";
 import {CardPacksType} from "../../store/reducers/packs-reducer";
 
 export const packsList = {
-    getPacks(sortPacks?: string | undefined, user_id?: string) {
+    getPacks(sortPacks: string = '0updated', user_id?: string) {
         return instance.get<null, AxiosResponse<ResponseType<CardPacksType[]>>>('/cards/pack', {params: {sortPacks, user_id}})
     }
 }
