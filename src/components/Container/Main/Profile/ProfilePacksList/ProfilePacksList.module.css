@@ -1,6 +1,8 @@
 .packs__body {
     position: relative;
-
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .packs__body h2 {

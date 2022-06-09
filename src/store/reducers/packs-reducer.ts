@@ -25,7 +25,7 @@ const initialState = {
     maxCardsCount: 4,
     minCardsCount: 0,
     page: 1,
-    pageCount: 4,
+    pageCount: 5,
 }
 
 export enum ACTIONS_PROFILE_TYPE {
@@ -38,6 +38,9 @@ export const packsReducer = (state: InitialPacksStateType = initialState, action
             return {
                 ...state,
                 cardPacks: [...action.packs],
+                cardPacksTotalCount: action.cardPacksTotalCount,
+                page: action.page,
+                pageCount: action.selectPageCount
             }
         }
         default:
@@ -46,7 +49,8 @@ export const packsReducer = (state: InitialPacksStateType = initialState, action
 }
 
 // actions
-export const setPacksAC = (packs: CardPacksType[]) => ({type: ACTIONS_PROFILE_TYPE.SET_PACKS, packs} as const)
+export const setPacksAC = (packs: CardPacksType[], cardPacksTotalCount: number, page: number, selectPageCount: number) =>
+    ({type: ACTIONS_PROFILE_TYPE.SET_PACKS, packs, cardPacksTotalCount, page, selectPageCount} as const)
 
 //Types Actions
 
@@ -56,11 +60,11 @@ export type PacksActionsType = SetPacksType
 //Thunk
 
 // export const getPacksTC = (min: number, max: number, sortPacks: number, page: number, pageCount: number) => (dispatch: TypedDispatch, getState: () => ReduxStateType) => {
-export const getPacksTC = (sortPacks?: string) => (dispatch: TypedDispatch, getState: () => ReduxStateType) => {
+export const getPacksTC = (sortPacks: string, page: number, selectPageCount: number) => (dispatch: TypedDispatch, getState: () => ReduxStateType) => {
     // const {_id} = getState().profile
-    packsList.getPacks(sortPacks)
+    packsList.getPacks(sortPacks, page, selectPageCount)
         .then(res => {
-            dispatch(setPacksAC(res.data.cardPacks))
+            dispatch(setPacksAC(res.data.cardPacks, res.data.cardPacksTotalCount, page, selectPageCount))
         })
 
 }
