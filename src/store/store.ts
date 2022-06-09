@@ -7,9 +7,8 @@ import {CardsActionsType} from "../components/Container/Main/Cards/cards-bll/car
 import {PacksActionsType, packsReducer} from "./reducers/packs-reducer";
 
 
-export type ActionsType = ProfileActionsType | CardsActionsType
 
-export type ActionsType = ProfileActionsType | PacksActionsType
+export type ActionsType = ProfileActionsType | PacksActionsType | CardsActionsType
 export type ReduxStateType = ReturnType<typeof rootReducer>
 export type TypedDispatch = ThunkDispatch<ReduxStateType, any, ActionsType>
 
