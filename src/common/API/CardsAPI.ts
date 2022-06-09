@@ -7,16 +7,23 @@ const instance = axios.create({
 
 export const cardsAPI = {
     getCards (cardsPack_id: string) {
-        return instance.get<GetDataType>(`cards/card?cardsPack_id=${cardsPack_id}`)
+        return instance.get<GetDataType>(`cards/card?cardsPack_id=${cardsPack_id}&pageCount=1000`)
     },
-    addCards () {
-
+    addCards (cardsPack_id: string) {
+        return instance.post<CardItemType>('/cards/card', {
+            card: {
+                cardsPack_id,
+                question: 'no question',
+                answer: 'no answer',
+                grade: 0,
+                }
+        })
     },
     updateCards () {
 
     },
-    deleteCards () {
-
+    deleteCards (cardID: string) {
+        return instance.delete(`/cards/card?id=${cardID}`)
     },
 }
 
@@ -51,28 +58,3 @@ export type CardItemType = {
     __v: number
     _id: string
 }
-
-// export type CardType = {
-//     _id: string;
-//     cardsPack_id: string;
-//     user_id: string;
-//
-//     answer: string;
-//     question: string;
-//     grade: number;
-//     shots: number;
-//
-//     questionImg: string;
-//     answerImg: string;
-//     answerVideo: string;
-//     questionVideo: string;
-//
-//     comments: string;
-//
-//     type: string;
-//     rating: number;
-//     more_id: string;
-//
-//     created: string;
-//     updated: string;
-// }
