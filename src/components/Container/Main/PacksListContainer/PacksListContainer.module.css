@@ -1,14 +1,14 @@
-.profile__container {
+.packsList__container {
     width: 100%;
     border-radius: 8px;
     background-color: white;
 }
 
-.profile__body {
+.packsList__body {
     display: flex;
 }
 
-.profile__body_profile {
+.packsList__body_profile {
     max-width: 250px;
     width: 100%;
     height: 640px;
@@ -18,7 +18,7 @@
 /*___________________MAIN BLOCK______________________*/
 
 
-.profile__body_main {
+.packsList__body_main {
     margin: 15px 20px 25px 40px;
     width: 100%;
 }
