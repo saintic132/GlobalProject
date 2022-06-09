@@ -5,6 +5,7 @@ import {PackList} from "./Packs/PackList";
 import search from '../../../../../assets/img/search_bar/search.png'
 
 export const ProfilePacksList = () => {
+
     return (
         <div className={style.packs__body}>
             <h2>
@@ -15,7 +16,10 @@ export const ProfilePacksList = () => {
                 placeholder="Search..."
                 // value={email}
             />
-            <img src={search} alt="search"/>
+            <img
+                className={style.profile__body_img_search}
+                src={search}
+                alt="search"/>
             {/*Компонента с отрисовкой Карточек*/}
             <PackList/>
         </div>
