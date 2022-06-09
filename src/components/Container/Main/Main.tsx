@@ -8,6 +8,7 @@ import Error404 from "../../../common/404/Error404";
 import {Registration} from "../../features/register/Registration";
 import {useAppSelector} from "../../../store/store";
 import {SetNewPassword} from "../../features/forgotPassword/SetNewPassword/SetNewPassword";
+import PacksListContainer from "./PacksListContainer/PacksListContainer";
 
 export function Main() {
 
@@ -19,6 +20,10 @@ export function Main() {
                 <Route
                     path="/"
                     element={<Profile isLoginIn={isLoggedIn}/>}
+                />
+                <Route
+                    path="/cards"
+                    element={<PacksListContainer isLoginIn={isLoggedIn}/>}
                 />
                 <Route
                     path="login"

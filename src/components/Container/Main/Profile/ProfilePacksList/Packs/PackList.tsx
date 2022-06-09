@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import style from './PackList.module.css'
 
 export const PackList = () => {
@@ -27,12 +27,12 @@ export const PackList = () => {
             {/*    packs && packs.map(p => {*/}
             {/*        return (*/}
             {/*            <div*/}
-            {/*                key={p.id}*/}
+            {/*                key={p._id}*/}
             {/*                className={style.packList__list}*/}
             {/*            >*/}
             {/*                <span className={style.packList__name}>{p.name}</span>*/}
-            {/*                <span className={style.packList__cards}>{p.cards}</span>*/}
-            {/*                <span className={style.packList__updates}>{p.updates}</span>*/}
+            {/*                <span className={style.packList__cards}>{p.cardsCount}</span>*/}
+            {/*                <span className={style.packList__updates}>{p.updated}</span>*/}
             {/*                <span className={style.packList__create}>{p.created}</span>*/}
             {/*                <span className={style.packList__action}>*/}
             {/*                    <SuperButton className={style.packList__button_delete}>*/}

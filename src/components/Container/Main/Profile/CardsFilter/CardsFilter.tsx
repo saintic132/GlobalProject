@@ -3,6 +3,9 @@ import style from "./CardsFilter.module.css";
 import SuperInputText from "../../../../../common/buttons/c1-SuperInputText/SuperInputText";
 
 export const CardsFilter = memo(() => {
+
+
+
     return (
         <div className={style.userProfile__params}>
             <h4>Number of cards</h4>
