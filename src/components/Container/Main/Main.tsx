@@ -8,6 +8,7 @@ import Error404 from "../../../common/404/Error404";
 import {Registration} from "../../features/register/Registration";
 import {useAppSelector} from "../../../store/store";
 import {SetNewPassword} from "../../features/forgotPassword/SetNewPassword/SetNewPassword";
+import {CardTable} from "./Cards/cards-ui/CardTable";
 
 export function Main() {
 
@@ -27,6 +28,10 @@ export function Main() {
                 <Route
                     path='register'
                     element={<Registration/>}
+                />
+                <Route
+                    path='cards'
+                    element={<CardTable/>}
                 />
                 <Route
                     path="forgot"
