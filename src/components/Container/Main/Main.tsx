@@ -35,7 +35,7 @@ export function Main() {
                     element={<Registration/>}
                 />
                 <Route
-                    path='cards'
+                    path='/cardsTest'
                     element={<CardTable/>}
                 />
                 <Route
