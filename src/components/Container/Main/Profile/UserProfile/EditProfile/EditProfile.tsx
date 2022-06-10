@@ -2,20 +2,17 @@ import React, {memo, useEffect, useState} from 'react';
 import style from './EditProfile.module.css'
 import SuperButton from "../../../../../../common/buttons/c2-SuperButton/SuperButton";
 import {useAppDispatch} from "../../../../../../store/store";
-import {editProfileThunk, setErrorToProfileAC} from "../../../../../../store/reducers/profile-reducer";
-import noAvatar from '../../../../../../common/img/no-avatar.png'
+import noAvatar from '../../../../../../assets/img/avatar/no-avatar.png'
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import * as Yup from 'yup';
+import {
+    editProfileThunk,
+    InitialProfileStateType,
+    setErrorToProfileAC
+} from "../../../../../../store/reducers/profile-reducer";
 
 type EditProfilePropsType = {
-    profileData: {
-        name: string
-        email: string
-        avatar: string | undefined
-        editProfile: boolean
-        disableButton: boolean
-        errorMessage: string | null
-    },
+    profileData: InitialProfileStateType
     clickToEditProfile: (editProfile: boolean) => void
 }
 
@@ -68,7 +65,7 @@ export const EditProfile = memo(({profileData, clickToEditProfile}: EditProfileP
                         <h2>Personal Information</h2>
                         <img
                             className={style.editProfile__img_avatar}
-                            src={profileData.avatar === undefined || profileData.avatar === 'email' ? noAvatar : profileData.avatar}
+                            src={profileData.avatar ? noAvatar : profileData.avatar}
                             alt="avatar"
                             onClick={() => setShowUploadAvatar(!showUploadAvatar)}
                         />
@@ -87,14 +84,12 @@ export const EditProfile = memo(({profileData, clickToEditProfile}: EditProfileP
                         }
                         {
                             showUploadAvatar &&
-                            <div>
-                                <Field
-                                    className={style.editProfile__edit_input}
-                                    name='avatar'
-                                    type='text'
-                                    placeholder='Enter url or base64'
-                                />
-                            </div>
+                            <Field
+                                className={style.editProfile__edit_input}
+                                name='avatar'
+                                type='text'
+                                placeholder='Enter url or base64'
+                            />
                         }
                         <div className={style.editProfile__edit}>
                             <label>Nickname</label>
@@ -118,13 +113,13 @@ export const EditProfile = memo(({profileData, clickToEditProfile}: EditProfileP
                                           className={style.editProfile__edit_error}/>
                         </div>
                         {
-                            !profileData.errorMessage &&
+                            !profileData.helpers.errorMessage &&
                             <div className={style.fakeDiv}/>
                         }
                         {
-                            profileData.errorMessage &&
+                            profileData.helpers.errorMessage &&
                             <div className={style.editProfile__edit_server_error}>
-                                {profileData.errorMessage}
+                                {profileData.helpers.errorMessage}
                             </div>
                         }
                         <div className={style.editProfile__edit_buttons}>
@@ -138,7 +133,7 @@ export const EditProfile = memo(({profileData, clickToEditProfile}: EditProfileP
                             <SuperButton
                                 className={style.editProfile__edit_buttonSave}
                                 type='submit'
-                                disabled={profileData.disableButton}
+                                disabled={profileData.helpers.disableButton}
                             >
                                 Save
                             </SuperButton>

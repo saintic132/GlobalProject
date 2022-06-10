@@ -1,0 +1,29 @@
+h2 {
+    margin: 0;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 33px;
+    color: #2D2E46;
+}
+
+.packsList__container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.packsList__body_input_search {
+    width: 600px;
+    height: 36px;
+    border: 1px solid rgba(99, 93, 128, .5);
+    border-radius: 2px;
+}
+
+.packsList__btn {
+    width: 230px;
+    height: 36px;
+    background-color: #21268F;
+    color: #FFFFFF;
+    border-radius: 30px;
+}

@@ -1,0 +1,25 @@
+.packsFilter__params {
+    margin: 17px 25px 50px 25px;
+}
+
+.packsFilter__params_inputs,{
+    display: flex;
+}
+
+.packsFilter__params_input {
+    width: 97px;
+    height: 36px;
+    padding: 4px 6px;
+    box-sizing: border-box;
+    border: 1px solid rgba(36, 37, 74, .5);
+}
+
+.packsFilter__btn {
+    width: 97px;
+    height: 36px;
+    background-color: #FFFFFF;
+}
+
+.grey {
+   background-color: #9A91C8;
+}

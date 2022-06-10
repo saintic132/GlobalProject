@@ -1,7 +1,6 @@
 .editProfile__container {
     max-width: 415px;
     width: 100%;
-    height: 100%;
     background-color: #F9F9FE;
     margin: 0 auto;
     border-radius: 8px;
@@ -10,7 +9,6 @@
 .editProfile__edit_body {
     padding: 30px;
     max-width: 415px;
-    max-height: 540px;
     display: flex;
     flex-direction: column;
 }
@@ -39,7 +37,7 @@
 }
 
 .editProfile__edit {
-    margin-top: 15px;
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
 }
@@ -131,9 +129,7 @@ button[disabled] {
     max-width: 250px;
     width: 100%;
     color: red;
-    position: relative;
-    top: 50px;
-    left: 75px;
+    margin: 10px 0;
 }
 
 .fakeDivAvatarUrl {
@@ -141,5 +137,6 @@ button[disabled] {
 }
 
 .fakeDiv {
+    margin: 10px 0;
     height: 21px;
 }
