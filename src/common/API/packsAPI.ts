@@ -3,29 +3,20 @@ import {AxiosResponse} from "axios";
 import {CardPacksType} from "../../store/reducers/packs-reducer";
 
 export const packsList = {
-    getPacks(min: number, max: number, sortPacks: string, page: number, pageCount: number) {
+    getPacks(packName: string, min: number, max: number, sortPacks: string, page: number, pageCount: number, user_id: string) {
         return instance.get<{}, AxiosResponse<ResponseType<CardPacksType[]>>>('/cards/pack', {
             params: {
+                packName,
                 min,
                 max,
                 sortPacks,
                 page,
                 pageCount,
+                user_id
             }
         })
     }
 }
-
-// getPacks(sortPacks: string = '0updated', user_id?: string, page: number) {
-//     return instance.get<{}, AxiosResponse<ResponseType<CardPacksType[]>>>('/cards/pack', {
-//         params: {
-//             sortPacks,
-//             page,
-//             user_id
-//         }
-//     })
-// }
-// }
 
 type ResponseType<D = []> = {
     cardPacks: D

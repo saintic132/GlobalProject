@@ -10,32 +10,32 @@ export const PackList = () => {
 
     const packs = useAppSelector(state => state.packs.cardPacks)
     const sortPacks = useAppSelector(state => state.packs.sortPacks)
-    const dispatch = useAppDispatch()
-
-    const [sortNumber, setSortNumber] = useState<number>(1);
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const [selectPageCount, setSelectPageCount] = useState(5);
+    const searchTextValue = useAppSelector(state => state.packs.searchText)
     const packsTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
     const packsCountOnPage = useAppSelector(state => state.packs.pageCount)
+    const page = useAppSelector(state => state.packs.page)
+
+
+    const dispatch = useAppDispatch()
+
+    const [sortNumber, setSortNumber] = useState<number>(0);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [selectPageCount, setSelectPageCount] = useState(5);
 
     useEffect(() => {
-        if (sortPacks === '0updated') {
-            setSortNumber(1)
-        } else {
-            setSortNumber(0)
-        }
-    }, [sortPacks])
+        dispatch(getPacksTC(searchTextValue, sortPacks, currentPage, selectPageCount))
+    }, [searchTextValue, sortPacks, currentPage, selectPageCount, dispatch])
 
     useEffect(() => {
-        dispatch(getPacksTC(sortNumber + 'updated', currentPage, selectPageCount))
-    }, [dispatch, sortNumber, currentPage, selectPageCount])
+        setCurrentPage(page)
+    }, [page])
 
     const onClickHandleSortByUpdate = () => {
         if (sortNumber === 1) {
-            dispatch(getPacksTC('0updated', currentPage, selectPageCount))
+            dispatch(getPacksTC(searchTextValue, '0updated', 1, selectPageCount))
             setSortNumber(0)
         } else {
-            dispatch(getPacksTC('1updated', currentPage, selectPageCount))
+            dispatch(getPacksTC(searchTextValue, '1updated', 1, selectPageCount))
             setSortNumber(1)
         }
     }
