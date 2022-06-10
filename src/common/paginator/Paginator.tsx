@@ -90,7 +90,7 @@ export function Paginator({
                         <option value={15}>15</option>
                     </select>
                 </div>
-                <span>Cards per Page</span>
+                <span>Packs per Page</span>
             </div>
         </div>
     )
