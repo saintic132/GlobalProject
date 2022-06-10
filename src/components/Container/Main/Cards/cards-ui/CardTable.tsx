@@ -1,23 +1,30 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import SuperButton from "../../../../../common/buttons/c2-SuperButton/SuperButton";
 import {Card} from "./card";
 import SuperInputText from "../../../../../common/buttons/c1-SuperInputText/SuperInputText";
-import {addCardsTC, getCardsTC} from "../cards-bll/cardsThunk";
 import {useAppDispatch, useAppSelector} from "../../../../../store/store";
 import style from "./CardTable.module.css";
+import {Paginator} from "../../../../../common/paginator/Paginator";
+import {addCardsTC, getCardsTC} from "../cards-bll/cardsReducer";
 
 export const CardTable = () => {
     const cards = useAppSelector(store => store.cards)
     const dispatch = useAppDispatch()
     const tempPackID = '627e52dbf2959a00042c3c46'
+    //------------------
+    const cardsTotalCount = useAppSelector(store => store.cards.cardsTotalCount)
+    const cardsCountOnPage = useAppSelector(store => store.cards.pageCount)
+
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [selectPageCount, setSelectPageCount] = useState<number>(5);
 
     useEffect(() => {
-        dispatch(getCardsTC(tempPackID))
-    }, [dispatch])
+        dispatch(getCardsTC(tempPackID, currentPage, selectPageCount))
+    }, [dispatch, currentPage, selectPageCount])
 
 
     const addCardsHandler = () => {
-        dispatch(addCardsTC(tempPackID))
+        dispatch(addCardsTC(tempPackID, currentPage, selectPageCount))
     }
 
     return (
@@ -40,11 +47,23 @@ export const CardTable = () => {
                 <span className={style.cardTable__grade}>Grade</span>
                 <span className={style.cardTable__last_updated}>Last Updated</span>
             </div>
-            <div>
 
-                {cards.cards.map(card => <Card key={card._id} card_id={card._id} tempPackID={tempPackID}/>)}
 
-            </div>
+                {cards && cards.cards.map(card => <Card key={card._id}
+                                               card_id={card._id}
+                                               tempPackID={tempPackID}
+                                               currentPage={currentPage}
+                                               selectPageCount={selectPageCount}/>)}
+
+
+            <Paginator
+                currentPage={currentPage}
+                allPacksCount={cardsTotalCount}
+                packsCountOnPage={cardsCountOnPage}
+                setCurrentPage={setCurrentPage}
+                selectPageCount={selectPageCount}
+                setSelectPageCount={setSelectPageCount}
+            />
         </div>
     );
 };

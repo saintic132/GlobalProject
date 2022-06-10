@@ -2,8 +2,7 @@ import {applyMiddleware, combineReducers, Store, legacy_createStore as createSto
 import thunk, { ThunkDispatch } from "redux-thunk";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {ProfileActionsType, profileReducer} from "./reducers/profile-reducer";
-import {cardsReducer} from "../components/Container/Main/Cards/cards-bll/cardsReducer";
-import {CardsActionsType} from "../components/Container/Main/Cards/cards-bll/cardsActions";
+import {CardsActionsType, cardsReducer} from "../components/Container/Main/Cards/cards-bll/cardsReducer";
 import {PacksActionsType, packsReducer} from "./reducers/packs-reducer";
 
 

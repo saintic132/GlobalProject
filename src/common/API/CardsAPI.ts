@@ -6,8 +6,8 @@ const instance = axios.create({
 })
 
 export const cardsAPI = {
-    getCards (cardsPack_id: string) {
-        return instance.get<GetDataType>(`cards/card?cardsPack_id=${cardsPack_id}&pageCount=1000`)
+    getCards (cardsPack_id: string, page:number, selectPageCount: number) {
+        return instance.get<CardsStateType>(`cards/card?cardsPack_id=${cardsPack_id}&page=${page}&pageCount=${selectPageCount}`)
     },
     addCards (cardsPack_id: string) {
         return instance.post<CardItemType>('/cards/card', {
@@ -31,14 +31,13 @@ export const cardsAPI = {
 
 
 
-export type GetDataType = {
-    cards: CardItemType[];
-
-    error?: string;
-}
-
 export type CardsStateType = {
     cards: CardItemType[];
+    cardsTotalCount: number
+    maxGrade: number
+    minGrade: number
+    page: number
+    pageCount: number
 }
 
 export type CardItemType = {

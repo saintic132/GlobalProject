@@ -2,13 +2,16 @@ import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../../../store/store";
 import SuperButton from "../../../../../common/buttons/c2-SuperButton/SuperButton";
 import style from "./CardTable.module.css";
-import {deleteCardsTC} from "../cards-bll/cardsThunk";
+import { deleteCardsTC } from '../cards-bll/cardsReducer';
+
 
 
 
 export type CardPropsType = {
     card_id: string
     tempPackID: string
+    currentPage: number
+    selectPageCount: number
     //activationModalWindow: ()=> void
 }
 
@@ -17,7 +20,7 @@ export const Card = (props: CardPropsType) => {
     const cardItem = useAppSelector(store => store.cards.cards.filter(card => card._id === props.card_id)[0])
 
     const deleteCardHandler = () => {
-        dispatch(deleteCardsTC(props.tempPackID, cardItem._id))
+        dispatch(deleteCardsTC(props.tempPackID, cardItem._id, props.currentPage, props.selectPageCount))
     }
 
 
