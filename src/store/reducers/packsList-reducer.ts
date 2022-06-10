@@ -1,5 +1,7 @@
 import {ReduxStateType, TypedDispatch} from "../store";
-import {CardPacksType, userAPI} from "../../common/API/API";
+import {CardPacksType, userAPI} from "../../common/API/userAPI";
+
+;
 
 const initialState: InitialStateType = {
     cardPacks: [],
