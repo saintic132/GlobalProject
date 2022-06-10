@@ -3,12 +3,14 @@ import {AxiosResponse} from "axios";
 import {CardPacksType} from "../../store/reducers/packs-reducer";
 
 export const packsList = {
-    getPacks(sortPacks: string, page: number, pageCount: number) {
+    getPacks(min: number, max: number, sortPacks: string, page: number, pageCount: number) {
         return instance.get<{}, AxiosResponse<ResponseType<CardPacksType[]>>>('/cards/pack', {
             params: {
+                min,
+                max,
                 sortPacks,
                 page,
-                pageCount
+                pageCount,
             }
         })
     }
