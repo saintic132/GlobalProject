@@ -16,7 +16,7 @@ export const userAPI = {
         })
     },
     authMe() {
-      return instance.post<null, AxiosResponse<RegistrationResponseType>>('/auth/me')
+        return instance.post<null, AxiosResponse<RegistrationResponseType>>('/auth/me')
     },
     logout() {
         return instance.delete<null, AxiosResponse<{ info: string }>>('/auth/me')
@@ -39,6 +39,16 @@ export const userAPI = {
             avatar
         })
     },
+    getPacksList(min?: number, max?: number, packName?: string, pageCount?: number) {
+        return instance.get<any, AxiosResponse<PackType>>(`/cards/pack`, {
+            params: {
+                min,
+                max,
+                packName,
+                pageCount: 15
+            }
+        })
+    }
 }
 
 export type RegistrationResponseType = {
@@ -74,4 +84,22 @@ export type LoginType = {
     email: string
     password: string
     rememberMe: boolean
+}
+
+export type CardPacksType = {
+    _id: string
+    user_id: string
+    name: string
+    cardsCount: number
+    created: string
+    updated: string
+}
+
+export type PackType = {
+    cardPacks: Array<CardPacksType>
+    cardPacksTotalCount: number
+    maxCardsCount: number
+    minCardsCount: number
+    page: number
+    pageCount: number
 }

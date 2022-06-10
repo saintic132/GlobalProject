@@ -9,6 +9,7 @@ import {Registration} from "../../features/register/Registration";
 import {useAppSelector} from "../../../store/store";
 import {SetNewPassword} from "../../features/forgotPassword/SetNewPassword/SetNewPassword";
 import {CardTable} from "./Cards/cards-ui/CardTable";
+import PacksListContainer from "./PacksListContainer/PacksListContainer";
 
 export function Main() {
 
@@ -20,6 +21,10 @@ export function Main() {
                 <Route
                     path="/"
                     element={<Profile isLoginIn={isLoggedIn}/>}
+                />
+                <Route
+                    path="/cards"
+                    element={<PacksListContainer isLoginIn={isLoggedIn}/>}
                 />
                 <Route
                     path="login"
