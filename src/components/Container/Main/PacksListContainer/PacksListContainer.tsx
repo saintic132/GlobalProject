@@ -1,9 +1,8 @@
 import React from 'react';
 import style from './PacksListContainer.module.css'
 import {Redirect} from "../../../../common/Redirect/Redirect";
-import {CardsFilter} from "../Profile/CardsFilter/CardsFilter";
-import {PackList} from "./PacksList/PackList/PackList";
 import {PacksList} from "./PacksList/PacksList";
+import {PacksFilter} from "./CardsFilter/PacksFilter";
 
 type ProfilePropsType = {
     isLoginIn: boolean
@@ -14,7 +13,7 @@ const PacksListContainer: React.FC<ProfilePropsType> = () => {
         <div className={style.packsList__container}>
             <div className={style.packsList__body}>
                 <div className={style.packsList__body_profile}>
-                    <CardsFilter/>
+                    <PacksFilter/>
                 </div>
                 <div className={style.packsList__body_main}>
                     <PacksList/>

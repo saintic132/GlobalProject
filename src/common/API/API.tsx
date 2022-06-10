@@ -43,8 +43,15 @@ export const userAPI = {
             avatar
         })
     },
-    getPacksList() {
-        return instance.get<any, AxiosResponse<PackType>>(`/cards/pack`)
+    getPacksList(min?: number, max?: number, packName?: string, pageCount?: number) {
+        return instance.get<any, AxiosResponse<PackType>>(`/cards/pack`, {
+            params: {
+                min,
+                max,
+                packName,
+                pageCount: 15
+            }
+        })
     }
 }
 
