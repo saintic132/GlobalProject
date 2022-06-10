@@ -17,19 +17,23 @@ export type InitialPacksStateType = {
     minCardsCount: number
     page: number
     pageCount: number
+    sortPacks: string
 }
 
 const initialState = {
     cardPacks: [],
     cardPacksTotalCount: 0,
-    maxCardsCount: 4,
+    maxCardsCount: 110,
     minCardsCount: 0,
     page: 1,
     pageCount: 5,
+    sortPacks: '0updated'
 }
 
 export enum ACTIONS_PROFILE_TYPE {
     SET_PACKS = 'PACKS/SET_PACKS',
+    SET_MIN_CARDS_FILTER_VALUE = 'PACKS/SET_MIN_CARDS_FILTER_VALUE',
+    SET_MAX_CARDS_FILTER_VALUE = 'PACKS/SET_MAX_CARDS_FILTER_VALUE',
 }
 
 export const packsReducer = (state: InitialPacksStateType = initialState, action: PacksActionsType): InitialPacksStateType => {
@@ -43,6 +47,18 @@ export const packsReducer = (state: InitialPacksStateType = initialState, action
                 pageCount: action.selectPageCount
             }
         }
+        case ACTIONS_PROFILE_TYPE.SET_MIN_CARDS_FILTER_VALUE: {
+            return {
+                ...state,
+                minCardsCount: action.value
+            }
+        }
+        case ACTIONS_PROFILE_TYPE.SET_MAX_CARDS_FILTER_VALUE: {
+            return {
+                ...state,
+                maxCardsCount: action.value
+            }
+        }
         default:
             return state
     }
@@ -51,18 +67,23 @@ export const packsReducer = (state: InitialPacksStateType = initialState, action
 // actions
 export const setPacksAC = (packs: CardPacksType[], cardPacksTotalCount: number, page: number, selectPageCount: number) =>
     ({type: ACTIONS_PROFILE_TYPE.SET_PACKS, packs, cardPacksTotalCount, page, selectPageCount} as const)
+export const setMinCardsFilterValueAC = (value: number) =>
+    ({type: ACTIONS_PROFILE_TYPE.SET_MIN_CARDS_FILTER_VALUE, value} as const)
+export const setMaxCardsFilterValueAC = (value: number) =>
+    ({type: ACTIONS_PROFILE_TYPE.SET_MAX_CARDS_FILTER_VALUE, value} as const)
 
 //Types Actions
 
 type SetPacksType = ReturnType<typeof setPacksAC>
-export type PacksActionsType = SetPacksType
+type SetMinCardsFilterValueType = ReturnType<typeof setMinCardsFilterValueAC>
+type SetMaxCardsFilterValueType = ReturnType<typeof setMaxCardsFilterValueAC>
+export type PacksActionsType = SetPacksType | SetMinCardsFilterValueType | SetMaxCardsFilterValueType
 
 //Thunk
 
-// export const getPacksTC = (min: number, max: number, sortPacks: number, page: number, pageCount: number) => (dispatch: TypedDispatch, getState: () => ReduxStateType) => {
 export const getPacksTC = (sortPacks: string, page: number, selectPageCount: number) => (dispatch: TypedDispatch, getState: () => ReduxStateType) => {
-    // const {_id} = getState().profile
-    packsList.getPacks(sortPacks, page, selectPageCount)
+    const {minCardsCount, maxCardsCount} = getState().packs
+    packsList.getPacks(minCardsCount, maxCardsCount, sortPacks, page, selectPageCount)
         .then(res => {
             dispatch(setPacksAC(res.data.cardPacks, res.data.cardPacksTotalCount, page, selectPageCount))
         })

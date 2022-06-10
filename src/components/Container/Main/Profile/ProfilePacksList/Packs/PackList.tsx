@@ -9,6 +9,7 @@ import {Paginator} from "../../../../../../common/paginator/Paginator";
 export const PackList = () => {
 
     const packs = useAppSelector(state => state.packs.cardPacks)
+    const sortPacks = useAppSelector(state => state.packs.sortPacks)
     const dispatch = useAppDispatch()
 
     const [sortNumber, setSortNumber] = useState<number>(1);
@@ -17,6 +18,13 @@ export const PackList = () => {
     const packsTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
     const packsCountOnPage = useAppSelector(state => state.packs.pageCount)
 
+    useEffect(() => {
+        if (sortPacks === '0updated') {
+            setSortNumber(1)
+        } else {
+            setSortNumber(0)
+        }
+    }, [sortPacks])
 
     useEffect(() => {
         dispatch(getPacksTC(sortNumber + 'updated', currentPage, selectPageCount))
@@ -70,7 +78,8 @@ export const PackList = () => {
                             </span>
                                 <span className={style.packList__cards}>
                                 {pack.cardsCount}</span>
-                                <span className={style.packList__updates}>{pack.updated}
+                                <span className={style.packList__updates_none_clicked}>
+                                    {pack.updated}
                             </span>
                                 <span className={style.packList__create}>
                                 {pack.user_name}
@@ -90,7 +99,6 @@ export const PackList = () => {
                         )
                     })
                 }
-
             </div>
             <Paginator
                 currentPage={currentPage}
