@@ -9,7 +9,7 @@ import {setSearchTextAC} from "../../../../../store/reducers/packsList-reducer";
 
 export const PacksList = () => {
     const dispatch = useAppDispatch()
-    const searchText = useAppSelector(state => state.packsList.helpers.searchText)
+    const searchText = useAppSelector(state => state.packsList.filters.searchText)
 
     const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setSearchTextAC(e.currentTarget.value))

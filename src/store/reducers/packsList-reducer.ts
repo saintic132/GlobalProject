@@ -1,8 +1,6 @@
 import {ReduxStateType, TypedDispatch} from "../store";
 import {CardPacksType, userAPI} from "../../common/API/userAPI";
 
-;
-
 const initialState: InitialStateType = {
     cardPacks: [],
     cardPacksTotalCount: 0,
@@ -10,7 +8,7 @@ const initialState: InitialStateType = {
     minCardsCount: 0,
     page: 0,
     pageCount: 15,
-    helpers: {
+    filters: {
         min: 0,
         max: 0,
         searchText:''
@@ -22,24 +20,24 @@ export const packsListReducer = (state: InitialStateType = initialState, action:
         case "SET-MIN":
             return {
                 ...state,
-                helpers: {
-                    ...state.helpers,
+                filters: {
+                    ...state.filters,
                     min: action.min
                 }
             }
         case "SET-MAX":
             return {
                 ...state,
-                helpers: {
-                    ...state.helpers,
+                filters: {
+                    ...state.filters,
                     max: action.max
                 }
             }
         case "SET-SEARCH-TEXT":
             return {
                 ...state,
-                helpers: {
-                    ...state.helpers,
+                filters: {
+                    ...state.filters,
                     searchText: action.searchText
                 }
             }
@@ -67,7 +65,7 @@ type InitialStateType = {
     minCardsCount: number
     page: number
     pageCount: number
-    helpers: {
+    filters: {
         min: number
         max: number
         searchText: string
@@ -97,8 +95,7 @@ export const setPageCountAC = (pageCount: number) => ({type: 'SET-PAGE-COUNT',pa
 // thunks
 export const packListTC = () => {
     return (dispatch: TypedDispatch, getState: () => ReduxStateType) => {
-        const state = getState().packsList.helpers
-        const {min, max, searchText} = state
+        const {min, max, searchText} = getState().packsList.filters
         userAPI.getPacksList(min, max, searchText)
             .then((res) => {
                 dispatch(setPacksListAC(res.data.cardPacks))

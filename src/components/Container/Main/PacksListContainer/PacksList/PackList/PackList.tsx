@@ -8,7 +8,7 @@ export const PackList = () => {
 
     const dispatch=useAppDispatch()
     const packs = useAppSelector(state => state.packsList.cardPacks)
-    const searchText = useAppSelector(state => state.packsList.helpers.searchText)
+    const searchText = useAppSelector(state => state.packsList.filters.searchText)
     console.log(packs)
 
     useEffect(()=>{

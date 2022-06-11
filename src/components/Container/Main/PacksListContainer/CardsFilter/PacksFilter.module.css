@@ -2,7 +2,7 @@
     margin: 17px 25px 50px 25px;
 }
 
-.packsFilter__params_inputs,{
+.packsFilter__params_inputs {
     display: flex;
 }
 
@@ -13,11 +13,16 @@
     box-sizing: border-box;
     border: 1px solid rgba(36, 37, 74, .5);
 }
+.packsFilter__params_blocks {
+    display: flex;
+}
 
-.packsFilter__btn {
+.packsFilter__block {
     width: 97px;
     height: 36px;
     background-color: #FFFFFF;
+    text-align: center;
+    line-height: 36px;
 }
 
 .grey {
