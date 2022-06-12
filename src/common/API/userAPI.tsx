@@ -45,7 +45,7 @@ export const userAPI = {
                 min,
                 max,
                 packName,
-                pageCount: 15
+                pageCount: 10
             }
         })
     }

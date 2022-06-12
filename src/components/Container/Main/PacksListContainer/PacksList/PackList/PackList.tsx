@@ -8,12 +8,11 @@ export const PackList = () => {
 
     const dispatch=useAppDispatch()
     const packs = useAppSelector(state => state.packsList.cardPacks)
-    const searchText = useAppSelector(state => state.packsList.filters.searchText)
-    console.log(packs)
+    const filters = useAppSelector(state => state.packsList.filters)
 
     useEffect(()=>{
         dispatch(packListTC())
-    }, [searchText])
+    }, [filters])
 
     // const [packs, setPacks] = useState([
     //     {id: 1, name: 'Pack name', cards: 4, updates: '18.03.2021', created: 'Ivan Ivanov'},

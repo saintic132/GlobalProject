@@ -5,14 +5,16 @@ import {PackList} from "./PackList/PackList";
 import SuperButton
     from "../../../../../common/buttons/c2-SuperButton/SuperButton";
 import {useAppDispatch, useAppSelector} from "../../../../../store/store";
-import {setSearchTextAC} from "../../../../../store/reducers/packsList-reducer";
+import {
+    setPackNameAC,
+} from "../../../../../store/reducers/packsList-reducer";
 
 export const PacksList = () => {
     const dispatch = useAppDispatch()
-    const searchText = useAppSelector(state => state.packsList.filters.searchText)
+    const packName = useAppSelector(state => state.packsList.filters.packName)
 
     const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(setSearchTextAC(e.currentTarget.value))
+        dispatch(setPackNameAC(e.currentTarget.value))
     }
 
     return (
@@ -26,7 +28,7 @@ export const PacksList = () => {
                     placeholder="Search..."
                     type={'text'}
                     onChange={onchangeHandler}
-                    value={searchText}
+                    value={packName}
                 />
                 <SuperButton className={style.packsList__btn}>Add new pack</SuperButton>
             </div>

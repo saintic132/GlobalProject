@@ -7,7 +7,7 @@ import {useAppDispatch, useAppSelector} from "../../../../../store/store";
 import {
     packListTC,
     setMaxAC,
-    setMinAC
+    setMinAC, setMyAllValueAC
 } from "../../../../../store/reducers/packsList-reducer";
 import {MyAll} from "./MyAll";
 
@@ -15,8 +15,11 @@ export const PacksFilter = memo(() => {
     const dispatch=useAppDispatch()
     const min = useAppSelector(state => state.packsList.filters.min)
     const max = useAppSelector(state => state.packsList.filters.max)
-    const [myAllValue, setMyAllValue] = useState<boolean>(false)
+    const myAllValue = useAppSelector(state => state.packsList.filters.myAllValue)
 
+    const changeMyAllValueHandler = (myAllValue: boolean) => {
+        dispatch(setMyAllValueAC(myAllValue))
+    }
     const onChangeRangeFrom = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setMinAC(+e.currentTarget.value))
     }
@@ -27,7 +30,7 @@ export const PacksFilter = memo(() => {
     return (
         <div className={style.packsFilter__params}>
             <h4>Show packs cards</h4>
-            <MyAll on={myAllValue} callback={setMyAllValue}/>
+            <MyAll myAllValue={myAllValue} callback={changeMyAllValueHandler}/>
             <h4>Number of cards</h4>
             <div className={style.packsFilter__params_inputs}>
                 <SuperInputText

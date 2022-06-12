@@ -7,11 +7,12 @@ const initialState: InitialStateType = {
     maxCardsCount: 0,
     minCardsCount: 0,
     page: 0,
-    pageCount: 15,
+    pageCount: 0,
     filters: {
         min: 0,
         max: 0,
-        searchText:''
+        packName:'',
+        myAllValue: false
     }
 }
 
@@ -33,12 +34,12 @@ export const packsListReducer = (state: InitialStateType = initialState, action:
                     max: action.max
                 }
             }
-        case "SET-SEARCH-TEXT":
+        case "SET-PACK-NAME":
             return {
                 ...state,
                 filters: {
                     ...state.filters,
-                    searchText: action.searchText
+                    packName: action.packName
                 }
             }
         case "SET-PACKS-LIST":
@@ -51,6 +52,14 @@ export const packsListReducer = (state: InitialStateType = initialState, action:
             return {
                 ...state,
                 pageCount: action.pageCount
+            }
+        case "SET-MY-ALL-VALUE":
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    myAllValue: action.myAllValue
+                }
             }
         default:
             return state
@@ -68,7 +77,8 @@ type InitialStateType = {
     filters: {
         min: number
         max: number
-        searchText: string
+        packName: string
+        myAllValue: boolean
     }
 }
 
@@ -76,27 +86,30 @@ export type PackListActionsType =
     SetPackListActionType |
     SetRangeFromActionType |
     SetRangeToActionType |
-    SetSearchTextActionType |
-    SetPageCountActionType
+    SetPackNameActionType |
+    SetPageCountActionType |
+    SetMyAllValueActionType
 
 export type SetPackListActionType = ReturnType<typeof setPacksListAC>
 export type SetRangeFromActionType = ReturnType<typeof setMinAC>
 export type SetRangeToActionType = ReturnType<typeof setMaxAC>
-export type SetSearchTextActionType = ReturnType<typeof setSearchTextAC>
+export type SetPackNameActionType = ReturnType<typeof setPackNameAC>
 export type SetPageCountActionType = ReturnType<typeof setPageCountAC>
+export type SetMyAllValueActionType = ReturnType<typeof setMyAllValueAC>
 
 // actions
 export const setPacksListAC = (data: Array<CardPacksType>) => ({type: 'SET-PACKS-LIST', data} as const)
 export const setMinAC = (min: number) => ({type: 'SET-MIN', min} as const)
 export const setMaxAC = (max: number) => ({type: 'SET-MAX', max} as const)
-export const setSearchTextAC = (searchText: string) => ({type: 'SET-SEARCH-TEXT',searchText} as const)
-export const setPageCountAC = (pageCount: number) => ({type: 'SET-PAGE-COUNT',pageCount} as const)
+export const setPackNameAC = (packName: string) => ({type: 'SET-PACK-NAME', packName} as const)
+export const setPageCountAC = (pageCount: number) => ({type: 'SET-PAGE-COUNT', pageCount} as const)
+export const setMyAllValueAC = (myAllValue: boolean) => ({type: 'SET-MY-ALL-VALUE', myAllValue} as const)
 
 // thunks
 export const packListTC = () => {
     return (dispatch: TypedDispatch, getState: () => ReduxStateType) => {
-        const {min, max, searchText} = getState().packsList.filters
-        userAPI.getPacksList(min, max, searchText)
+        const {min, max, packName} = getState().packsList.filters
+        userAPI.getPacksList(min, max, packName)
             .then((res) => {
                 dispatch(setPacksListAC(res.data.cardPacks))
             })
